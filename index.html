@@ -3,25 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>모공 케어 원료 개발 Ideation 리포트</title>
+  <title>마이크로바이옴 원료 개발 Ideation 리포트 — Next-Microbiome 전략</title>
   <style>
     :root {
-      --primary:   #2563eb;
-      --primary-light: #dbeafe;
-      --accent:    #0891b2;
-      --accent-light: #cffafe;
-      --bg:        #f8fafc;
-      --surface:   #ffffff;
-      --border:    #e2e8f0;
-      --text:      #1e293b;
-      --text-muted:#64748b;
-      --code-bg:   #1e293b;
-      --green:     #059669;
-      --green-light:#d1fae5;
-      --amber:     #d97706;
-      --amber-light:#fef3c7;
-      --purple:    #7c3aed;
-      --purple-light:#ede9fe;
+      --primary:        #0d9488;
+      --primary-dark:   #0f766e;
+      --primary-light:  #ccfbf1;
+      --accent:         #7c3aed;
+      --accent-light:   #ede9fe;
+      --gen1:           #0891b2;
+      --gen1-light:     #cffafe;
+      --gen2:           #7c3aed;
+      --gen2-light:     #ede9fe;
+      --gen3:           #059669;
+      --gen3-light:     #d1fae5;
+      --bg:             #f0fdf4;
+      --surface:        #ffffff;
+      --border:         #d1fae5;
+      --border-gray:    #e2e8f0;
+      --text:           #1e293b;
+      --text-muted:     #64748b;
+      --code-bg:        #0f172a;
+      --amber:          #d97706;
+      --amber-light:    #fef3c7;
+      --red-light:      #fef2f2;
+      --red-border:     #fecaca;
+      --red-text:       #991b1b;
+      --green-light:    #d1fae5;
+      --green-border:   #6ee7b7;
+      --green-text:     #065f46;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,7 +48,7 @@
     .page-wrapper { display: flex; min-height: 100vh; }
 
     nav#toc {
-      width: 260px;
+      width: 268px;
       flex-shrink: 0;
       position: sticky;
       top: 0;
@@ -48,7 +58,6 @@
       border-right: 1px solid var(--border);
       padding: 24px 16px;
     }
-
     nav#toc h2 {
       font-size: 11px;
       font-weight: 700;
@@ -57,40 +66,32 @@
       color: var(--text-muted);
       margin-bottom: 12px;
     }
-
-    nav#toc ol { list-style: none; padding: 0; }
+    nav#toc ol { list-style: none; }
     nav#toc li { margin: 2px 0; }
     nav#toc a {
       display: block;
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--text-muted);
       text-decoration: none;
       padding: 3px 8px;
       border-radius: 4px;
       transition: all .15s;
     }
-    nav#toc a:hover, nav#toc a.active {
-      background: var(--primary-light);
-      color: var(--primary);
-    }
-    nav#toc .toc-sub { padding-left: 16px; }
+    nav#toc a:hover { background: var(--primary-light); color: var(--primary-dark); }
+    nav#toc .toc-sub { padding-left: 14px; }
+    nav#toc .toc-sub2 { padding-left: 26px; }
 
-    main {
-      flex: 1;
-      max-width: 900px;
-      padding: 48px 40px 80px;
-      min-width: 0;
-    }
+    main { flex: 1; max-width: 920px; padding: 48px 44px 80px; min-width: 0; }
 
-    /* ── Header ── */
+    /* ── Report Header ── */
     .report-header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #059669 50%, #0891b2 100%);
       color: white;
       padding: 36px 40px;
-      border-radius: 12px;
-      margin-bottom: 40px;
+      border-radius: 14px;
+      margin-bottom: 44px;
     }
-    .report-header .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .tag {
       background: rgba(255,255,255,.2);
       border-radius: 99px;
@@ -99,280 +100,297 @@
       font-weight: 600;
       letter-spacing: .05em;
     }
-    .report-header h1 { font-size: 26px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
-    .report-header .summary {
+    .report-header h1 { font-size: 24px; font-weight: 800; line-height: 1.3; margin-bottom: 14px; }
+    .summary-box {
       background: rgba(255,255,255,.15);
-      border-left: 3px solid rgba(255,255,255,.6);
+      border-left: 3px solid rgba(255,255,255,.7);
       padding: 12px 16px;
       border-radius: 0 8px 8px 0;
-      font-size: 14px;
+      font-size: 13.5px;
       line-height: 1.7;
     }
-    .meta-row {
-      display: flex; gap: 20px; margin-top: 16px;
-      font-size: 12px; opacity: .8;
-    }
+    .meta-row { display: flex; gap: 20px; margin-top: 14px; font-size: 12px; opacity: .8; flex-wrap: wrap; }
 
     /* ── Typography ── */
     h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary);
+      font-size: 20px; font-weight: 700;
+      color: var(--primary-dark);
       border-bottom: 2px solid var(--primary-light);
       padding-bottom: 8px;
-      margin: 48px 0 20px;
+      margin: 50px 0 20px;
     }
-    h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--accent);
-      margin: 32px 0 14px;
-    }
-    h4 {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-      margin: 22px 0 10px;
-    }
+    h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin: 32px 0 14px; }
+    h4 { font-size: 14px; font-weight: 700; color: var(--text); margin: 18px 0 8px; }
     p { margin-bottom: 14px; }
     ul, ol { padding-left: 22px; margin-bottom: 14px; }
     li { margin-bottom: 4px; }
     strong { color: var(--text); }
-    em { color: var(--accent); font-style: italic; }
-
-    hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+    em { color: var(--primary); font-style: italic; }
+    hr { border: none; border-top: 1px solid var(--border-gray); margin: 40px 0; }
 
     /* ── Tables ── */
     .table-wrap { overflow-x: auto; margin-bottom: 20px; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
     thead th {
       background: var(--primary);
       color: white;
-      padding: 10px 14px;
+      padding: 9px 13px;
       text-align: left;
       font-weight: 600;
       white-space: nowrap;
     }
-    tbody tr:nth-child(even) { background: var(--bg); }
+    tbody tr:nth-child(even) { background: #f0fdf4; }
     tbody tr:hover { background: var(--primary-light); }
-    td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    td { padding: 8px 13px; border-bottom: 1px solid var(--border-gray); vertical-align: top; }
 
     /* ── Code blocks ── */
     pre {
       background: var(--code-bg);
-      color: #e2e8f0;
+      color: #cbd5e1;
       padding: 18px 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow-x: auto;
-      font-size: 13px;
-      line-height: 1.65;
+      font-size: 12.5px;
+      line-height: 1.7;
       margin-bottom: 18px;
       font-family: 'Consolas', 'D2Coding', 'Source Code Pro', monospace;
     }
+    pre .hl-teal  { color: #5eead4; }
+    pre .hl-blue  { color: #93c5fd; }
+    pre .hl-gray  { color: #475569; }
+    pre .hl-amber { color: #fcd34d; }
     code {
-      background: var(--bg);
+      background: var(--primary-light);
       border: 1px solid var(--border);
       padding: 1px 5px;
       border-radius: 4px;
       font-size: 13px;
       font-family: 'Consolas', 'D2Coding', monospace;
+      color: var(--primary-dark);
     }
-    pre code { background: none; border: none; padding: 0; }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
 
-    /* ── Blockquotes / Notes ── */
+    /* ── Blockquotes ── */
     blockquote {
-      background: var(--accent-light);
-      border-left: 4px solid var(--accent);
-      padding: 12px 16px;
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 11px 15px;
       border-radius: 0 8px 8px 0;
       margin: 16px 0;
       font-size: 13.5px;
-      color: #0e7490;
+      color: var(--primary-dark);
     }
-    blockquote strong { color: #0e7490; }
-
+    blockquote strong { color: var(--primary-dark); }
     .note-dev {
       background: var(--amber-light);
       border-left: 4px solid var(--amber);
-      padding: 12px 16px;
+      padding: 11px 15px;
       border-radius: 0 8px 8px 0;
       margin: 16px 0;
       font-size: 13.5px;
       color: #92400e;
     }
+    .note-ifscc {
+      background: #fdf4ff;
+      border-left: 4px solid #a855f7;
+      padding: 11px 15px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #6b21a8;
+    }
+
+    /* ── Generation cards ── */
+    .gen-card {
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin: 20px 0;
+      border: 1px solid;
+    }
+    .gen-card.g1 { background: #f0f9ff; border-color: #bae6fd; }
+    .gen-card.g2 { background: #faf5ff; border-color: #e9d5ff; }
+    .gen-card.g3 { background: #f0fdf4; border-color: #bbf7d0; }
+    .gen-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .gen-card.g1 .gen-badge { background: var(--gen1); color: white; }
+    .gen-card.g2 .gen-badge { background: var(--gen2); color: white; }
+    .gen-card.g3 .gen-badge { background: var(--gen3); color: white; }
+    .gen-card h4 { margin-top: 0; }
+    .gen-card.g1 h4 { color: var(--gen1); }
+    .gen-card.g2 h4 { color: var(--gen2); }
+    .gen-card.g3 h4 { color: var(--gen3); }
 
     /* ── Concept cards ── */
     .concept-card {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin: 28px 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      border: 1px solid var(--border-gray);
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin: 30px 0;
+      box-shadow: 0 1px 4px rgba(13,148,136,.08);
+      border-top: 4px solid var(--primary);
     }
-    .concept-card .concept-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .concept-card:nth-of-type(2) { border-top-color: #0891b2; }
+    .concept-card:nth-of-type(3) { border-top-color: #7c3aed; }
+    .concept-card:nth-of-type(4) { border-top-color: #d97706; }
+    .concept-card:nth-of-type(5) { border-top-color: #059669; }
+    .concept-card:nth-of-type(6) { border-top-color: #dc2626; }
+    .concept-title {
+      font-size: 16px; font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      display: flex; align-items: flex-start; gap: 10px;
     }
-    .concept-card .concept-title .emoji { font-size: 20px; }
-    .concept-card h4 {
-      font-size: 13px;
-      font-weight: 700;
+    .concept-title .emoji { font-size: 22px; flex-shrink: 0; }
+    .concept-card .field-label {
+      font-size: 12px; font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .06em;
+      letter-spacing: .07em;
       color: var(--text-muted);
       margin: 18px 0 6px;
     }
-    .concept-card h4:first-of-type { margin-top: 0; }
-    .risk-box {
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #991b1b;
-      margin-top: 10px;
-    }
     .diff-box {
       background: var(--green-light);
-      border: 1px solid #6ee7b7;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #065f46;
+      border: 1px solid var(--green-border);
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 13px; color: var(--green-text);
       margin-top: 10px;
     }
-
-    /* ── Priority table ── */
-    .star { color: var(--amber); }
+    .risk-box {
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 13px; color: var(--red-text);
+      margin-top: 10px;
+    }
 
     /* ── Obsidian link pills ── */
     .obs-link {
       display: inline-block;
-      background: var(--purple-light);
-      color: var(--purple);
+      background: var(--accent-light);
+      color: var(--accent);
       border: 1px solid #c4b5fd;
       border-radius: 99px;
       padding: 1px 9px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       margin: 1px 2px;
       white-space: nowrap;
     }
 
-    /* ── Graph section ── */
+    /* ── Phase timeline ── */
+    .phase-row {
+      display: flex; gap: 12px; margin: 20px 0;
+    }
+    .phase-block {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border-gray);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .phase-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 8px; padding: 3px 8px;
+      border-radius: 4px; display: inline-block;
+    }
+    .phase-block:nth-child(1) .phase-label { background: #dbeafe; color: #1d4ed8; }
+    .phase-block:nth-child(2) .phase-label { background: #fef9c3; color: #a16207; }
+    .phase-block:nth-child(3) .phase-label { background: #fce7f3; color: #9d174d; }
+    .phase-block p { font-size: 13px; margin-bottom: 6px; }
+
+    /* ── Matrix table ── */
+    .matrix-wrap { overflow-x: auto; margin: 18px 0; }
+    .matrix-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 560px; }
+    .matrix-table thead th { background: var(--primary-dark); color: white; padding: 8px 12px; text-align: center; }
+    .matrix-table thead th:first-child { text-align: left; }
+    .matrix-table .row-label { background: var(--primary); color: white; font-weight: 600; padding: 8px 12px; }
+    .matrix-table td { padding: 7px 12px; border: 1px solid var(--border-gray); text-align: center; }
+    .matrix-table tr:nth-child(even) td { background: #f0fdf4; }
+    .matrix-table .filled { background: var(--primary-light); color: var(--primary-dark); font-weight: 700; }
+
+    /* ── Graph box ── */
     .graph-box {
       background: var(--code-bg);
       color: #94a3b8;
-      padding: 24px;
-      border-radius: 10px;
+      padding: 24px 26px;
+      border-radius: 12px;
       font-family: 'Consolas', monospace;
       font-size: 12.5px;
-      line-height: 1.8;
+      line-height: 1.9;
       overflow-x: auto;
     }
-    .graph-box .hub { color: #60a5fa; font-weight: 700; }
-    .graph-box .node { color: #a5f3fc; }
-    .graph-box .comment { color: #475569; }
-
-    /* ── Matrix ── */
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: 140px repeat(4, 1fr);
-      gap: 2px;
-      font-size: 12.5px;
-      margin: 16px 0;
-    }
-    .matrix-grid .cell {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 7px 10px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    .matrix-grid .header-cell {
-      background: var(--primary);
-      color: white;
-      font-weight: 700;
-      padding: 7px 10px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    .matrix-grid .row-label {
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      padding: 7px 10px;
-      border-radius: 4px;
-    }
-    .matrix-grid .filled {
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 700;
-    }
+    .graph-box .hub   { color: #5eead4; font-weight: 700; }
+    .graph-box .node  { color: #a5f3fc; }
+    .graph-box .cat   { color: #fcd34d; font-weight: 600; }
+    .graph-box .arrow { color: #475569; }
 
     /* ── Capability list ── */
+    .cap-group { margin-bottom: 20px; }
+    .cap-group-title {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .cap-group:nth-child(1) .cap-group-title { background: #dbeafe; color: #1e40af; }
+    .cap-group:nth-child(2) .cap-group-title { background: #fef9c3; color: #92400e; }
+    .cap-group:nth-child(3) .cap-group-title { background: #fce7f3; color: #9d174d; }
     .cap-list { list-style: none; padding: 0; }
     .cap-list li {
-      padding: 8px 12px;
+      padding: 7px 12px;
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-gray);
       border-radius: 6px;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       font-size: 13.5px;
     }
-    .cap-list li::before {
-      content: "▸ ";
-      color: var(--primary);
-      font-weight: 700;
-    }
+    .cap-list li::before { content: "▸ "; color: var(--primary); font-weight: 700; }
 
-    /* ── References ── */
+    /* ── Refs ── */
     .ref-list { list-style: none; padding: 0; counter-reset: refs; }
     .ref-list li {
       counter-increment: refs;
       padding: 6px 0 6px 28px;
       position: relative;
-      border-bottom: 1px dashed var(--border);
-      font-size: 13px;
-      color: var(--text-muted);
+      border-bottom: 1px dashed var(--border-gray);
+      font-size: 13px; color: var(--text-muted);
     }
     .ref-list li::before {
       content: counter(refs);
-      position: absolute;
-      left: 0;
-      top: 6px;
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 12px;
+      position: absolute; left: 0; top: 6px;
+      font-weight: 700; color: var(--primary); font-size: 12px;
     }
+
+    /* ── Star rating ── */
+    .star { color: var(--amber); }
 
     /* ── Footer ── */
     footer {
-      text-align: center;
-      font-size: 12px;
+      text-align: center; font-size: 12px;
       color: var(--text-muted);
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+      margin-top: 64px; padding-top: 20px;
+      border-top: 1px solid var(--border-gray);
     }
 
     /* ── Responsive ── */
-    @media (max-width: 820px) {
+    @media (max-width: 860px) {
       nav#toc { display: none; }
       main { padding: 24px 20px 60px; }
       .report-header { padding: 24px 20px; }
+      .phase-row { flex-direction: column; }
     }
-
     @media print {
       nav#toc { display: none; }
       .page-wrapper { display: block; }
@@ -381,579 +399,718 @@
   </style>
 </head>
 <body>
-
 <div class="page-wrapper">
 
-  <!-- ── Sidebar TOC ── -->
-  <nav id="toc">
-    <h2>목차</h2>
-    <ol>
-      <li><a href="#sec1">1. 개념과 메커니즘</a></li>
-      <li class="toc-sub"><a href="#sec1-1">1.1 해부학적 이해</a></li>
-      <li class="toc-sub"><a href="#sec1-2">1.2 확대 원인</a></li>
-      <li class="toc-sub"><a href="#sec1-3">1.3 범위 재정의</a></li>
-      <li><a href="#sec2">2. 시장 트렌드 (2024–2026)</a></li>
-      <li class="toc-sub"><a href="#sec2-1">2.1 글로벌 시장</a></li>
-      <li class="toc-sub"><a href="#sec2-2">2.2 K-뷰티 트렌드</a></li>
-      <li class="toc-sub"><a href="#sec2-3">2.3 소비자 인식 변화</a></li>
-      <li><a href="#sec3">3. 주요 효능 성분</a></li>
-      <li class="toc-sub"><a href="#sec3-1">3.1 모공 타이트닝</a></li>
-      <li class="toc-sub"><a href="#sec3-2">3.2 모공 클렌징</a></li>
-      <li class="toc-sub"><a href="#sec3-3">3.3 Cosmeceutical-grade</a></li>
-      <li class="toc-sub"><a href="#sec3-4">3.4 딜리버리 기술</a></li>
-      <li><a href="#sec4">4. 마이크로바이옴 × 모공</a></li>
-      <li class="toc-sub"><a href="#sec4-1">4.1 모낭 내 역할</a></li>
-      <li class="toc-sub"><a href="#sec4-2">4.2 인과 관계</a></li>
-      <li class="toc-sub"><a href="#sec4-3">4.3 친화 성분</a></li>
-      <li><a href="#sec5">5. Ideation 컨셉 6종</a></li>
-      <li class="toc-sub"><a href="#concept-a">Concept A</a></li>
-      <li class="toc-sub"><a href="#concept-b">Concept B</a></li>
-      <li class="toc-sub"><a href="#concept-c">Concept C</a></li>
-      <li class="toc-sub"><a href="#concept-d">Concept D</a></li>
-      <li class="toc-sub"><a href="#concept-e">Concept E</a></li>
-      <li class="toc-sub"><a href="#concept-f">Concept F</a></li>
-      <li class="toc-sub"><a href="#matrix">매트릭스 요약</a></li>
-      <li><a href="#sec6">6. 우선순위 제언</a></li>
-      <li><a href="#graph">연결 노드 (Graph)</a></li>
-      <li><a href="#refs">참고문헌</a></li>
-    </ol>
-  </nav>
+<!-- ── Sidebar TOC ── -->
+<nav id="toc">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#sec1">1. 개념 재정의</a></li>
+    <li class="toc-sub"><a href="#sec1-1">1.1 정의 전환</a></li>
+    <li class="toc-sub"><a href="#sec1-2">1.2 패러다임 4단계</a></li>
+    <li><a href="#sec2">2. 시장 현황 (2024–2026)</a></li>
+    <li class="toc-sub"><a href="#sec2-1">2.1 시장 규모</a></li>
+    <li class="toc-sub"><a href="#sec2-2">2.2 세그먼트</a></li>
+    <li class="toc-sub"><a href="#sec2-3">2.3 핵심 트렌드</a></li>
+    <li><a href="#sec3">3. 세대별 분류 체계</a></li>
+    <li class="toc-sub"><a href="#sec3-1">1세대 — 발효 여과물</a></li>
+    <li class="toc-sub"><a href="#sec3-2">2세대 — 포스트바이오틱</a></li>
+    <li class="toc-sub"><a href="#sec3-3">3세대 — 생태계 설계</a></li>
+    <li><a href="#sec4">4. 핵심 원료 카테고리</a></li>
+    <li class="toc-sub"><a href="#sec4-1">4.1 프리바이오틱</a></li>
+    <li class="toc-sub"><a href="#sec4-2">4.2 프로바이오틱</a></li>
+    <li class="toc-sub"><a href="#sec4-3">4.3 포스트바이오틱</a></li>
+    <li class="toc-sub"><a href="#sec4-4">4.4 발효 공학 소재</a></li>
+    <li><a href="#sec5">5. 주목 기전 및 효능</a></li>
+    <li class="toc-sub"><a href="#sec5-1">5.1 TLR 신호</a></li>
+    <li class="toc-sub"><a href="#sec5-2">5.2 쿼럼센싱</a></li>
+    <li class="toc-sub"><a href="#sec5-3">5.3 AhR 축</a></li>
+    <li class="toc-sub"><a href="#sec5-4">5.4 Microbiota-Skin Axis</a></li>
+    <li class="toc-sub"><a href="#sec5-5">5.5 피부 노화</a></li>
+    <li><a href="#sec6">6. Next-Microbiome Ideation</a></li>
+    <li class="toc-sub"><a href="#next01">Next-01 세균 OMV</a></li>
+    <li class="toc-sub"><a href="#next02">Next-02 정밀 발효</a></li>
+    <li class="toc-sub"><a href="#next03">Next-03 신규 균주</a></li>
+    <li class="toc-sub"><a href="#next04">Next-04 엔지니어드 PB</a></li>
+    <li class="toc-sub"><a href="#next05">Next-05 제형 재설계</a></li>
+    <li class="toc-sub"><a href="#next06">Next-06 멀티축 전략</a></li>
+    <li class="toc-sub"><a href="#matrix">매트릭스 요약</a></li>
+    <li><a href="#sec7">7. 우선순위 로드맵</a></li>
+    <li><a href="#graph">연결 노드 (Graph)</a></li>
+    <li><a href="#refs">참고문헌</a></li>
+  </ol>
+</nav>
 
-  <!-- ── Main content ── -->
-  <main>
+<!-- ── Main ── -->
+<main>
 
-    <!-- Header -->
-    <div class="report-header">
-      <div class="tag-row">
-        <span class="tag">pore-care</span>
-        <span class="tag">ingredient-development</span>
-        <span class="tag">ideation</span>
-        <span class="tag">cosmetic-R&amp;D</span>
-        <span class="tag">microbiome</span>
-        <span class="tag">K-beauty</span>
-      </div>
-      <h1>모공 케어 원료 개발 Ideation 리포트</h1>
-      <div class="summary">
-        모공 케어는 타이트닝·클렌징·피부과적 접근까지 아우르는 복합 개념으로, 2025–2026년 K-뷰티·글로벌 시장 모두에서 <strong>'기술 고도화'</strong>와 <strong>'마이크로바이옴 친화성'</strong>이 핵심 방향으로 부상하고 있다. 본 리포트는 10년차 원료 개발 연구원 시각에서 모공 케어의 개념 재정의, 최신 트렌드 분석, 주요 효능 성분 정리, 그리고 피부 마이크로바이옴과의 접목 이데이션을 제공한다.
-      </div>
-      <div class="meta-row">
-        <span>📅 작성일: 2026-06-01</span>
-        <span>🔗 연관: skin_microbiome_report</span>
-        <span>🏷 type: ideation-report</span>
-      </div>
+  <!-- Header -->
+  <div class="report-header">
+    <div class="tag-row">
+      <span class="tag">microbiome</span>
+      <span class="tag">ingredient-development</span>
+      <span class="tag">ideation</span>
+      <span class="tag">postbiotic</span>
+      <span class="tag">fermentation</span>
+      <span class="tag">synthetic-biology</span>
+      <span class="tag">cosmetic-R&amp;D</span>
     </div>
+    <h1>마이크로바이옴 원료 개발 Ideation 리포트<br>— Next-Microbiome 전략</h1>
+    <div class="summary-box">
+      화장품 마이크로바이옴 시장은 2025년 $430M에서 2035년 $1.2B 규모로 성장 중이다. <strong>1세대(사균체·발효여과물) → 2세대(포스트바이오틱 복합계) → 3세대(세균 세포외소포체·정밀발효·합성생물학·피부 생태계 플랫폼)</strong>로의 전환이 가속되고 있다. 본 리포트는 기존 마이크로바이옴 원료 체계를 세대별로 정리하고, IFSCC 2025 이후 열린 'Next-Microbiome' 원료 개발 방향 <strong>6대 컨셉</strong>을 이데이션한다.
+    </div>
+    <div class="meta-row">
+      <span>📅 작성일: 2026-06-08</span>
+      <span>🔗 연관: skin_microbiome_report · pore_care_ideation_report</span>
+      <span>🏷 type: ideation-report</span>
+    </div>
+  </div>
 
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec1">1. 모공 케어의 개념과 메커니즘</h2>
+  <!-- ─────────────────────── -->
+  <h2 id="sec1">1. 화장품에서 마이크로바이옴의 개념 재정의</h2>
 
-    <h3 id="sec1-1">1.1 모공(Pore)의 해부학적 이해</h3>
-    <p>모공은 <strong>모낭-피지선 단위(Pilosebaceous Unit, PSU)</strong>의 개구부로, 피지 배출과 모간 노출의 통로이다. 피부과적으로 '모공'은 두 가지를 지칭한다:</p>
+  <h3 id="sec1-1">1.1 전통적 정의 → 확장된 정의</h3>
+  <pre><span class="hl-gray">[기존 정의 (2015–2022)]</span>
+마이크로바이옴 화장품 = 프로바이오틱스(유산균)를 넣거나
+                        마이크로바이옴을 '손상시키지 않는' 마이크로바이옴-프렌들리 제품
+
+<span class="hl-teal">[확장된 정의 (2023–현재)]</span>
+마이크로바이옴 화장품 = 피부 생태계(skin ecosystem)를 능동적으로 '설계·조율'하는
+                        원료 및 제형 기술 플랫폼
+                        → 균 자체 + 균이 만드는 물질 + 균 간 네트워크 + 숙주-미생물 신호축 모두 포함</pre>
+
+  <h3 id="sec1-2">1.2 패러다임 전환: 4단계</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>단계</th><th>시기</th><th>핵심 개념</th><th>대표 소재</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Phase 0</strong></td><td>~2015</td><td>항균 (microbiome을 제거 대상으로 인식)</td><td>항생제, 방부제, 살균 계면활성제</td></tr>
+        <tr><td><strong>Phase 1</strong></td><td>2015–2020</td><td>마이크로바이옴 보호 (손상 최소화)</td><td>마이크로바이옴-프렌들리 제형</td></tr>
+        <tr><td><strong>Phase 2</strong></td><td>2020–2024</td><td>균형 회복 (Correction)</td><td>프로바이오틱 라이세이트, Galactomyces 여과물</td></tr>
+        <tr><td><strong>Phase 3</strong></td><td>2024–현재</td><td>공생 활성화·생태계 설계 (Ecosystem Design)</td><td>세포외소포체, 엔지니어드 포스트바이오틱, 정밀발효</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note-ifscc">
+    <strong>IFSCC 2025 핵심 메시지:</strong> "마이크로바이옴은 단순한 '원료 카테고리'가 아닌 <strong>피부 생태계 설계 플랫폼 기술</strong>로 진화하고 있다." — BASF, dsm-firmenich, Shiseido 발표 공통 주제
+  </div>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[skin_microbiome_report]]</span>
+    <span class="obs-link">[[피부 생태학적 마이크로환경]]</span>
+    <span class="obs-link">[[숙주-미생물 상호작용]]</span>
+  </blockquote>
+
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="sec2">2. 글로벌 시장 현황 및 트렌드 (2024–2026)</h2>
+
+  <h3 id="sec2-1">2.1 시장 규모</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>지표</th><th>수치</th></tr></thead>
+      <tbody>
+        <tr><td>2024년 글로벌 마이크로바이옴 스킨케어 시장</td><td><strong>USD 434.8M</strong></td></tr>
+        <tr><td>2025년 추정치</td><td><strong>USD 430–480M</strong></td></tr>
+        <tr><td>2030년 전망</td><td><strong>USD 835.2M</strong> (CAGR 12.2%)</td></tr>
+        <tr><td>2035년 전망</td><td><strong>USD 1,209.2M</strong> (CAGR 11.0%)</td></tr>
+        <tr><td>소비자 인지율 2025</td><td><strong>62%</strong> (2020년 38%에서 급상승)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="sec2-2">2.2 세그먼트별 점유율 (2024)</h3>
+  <pre><span class="hl-teal">프로바이오틱 기반      71.6%</span>  <span class="hl-gray">← 현재 지배적 (그러나 성장 속도는 postbiotic이 앞섬)</span>
+<span class="hl-blue">포스트바이오틱 기반    빠른 성장세</span>  <span class="hl-gray">(안정성·안전성·규제 용이성이 드라이버)</span>
+프리바이오틱 기반      스킨케어 제형 전반에 조용히 확산
+신바이오틱             복합 효과 근거 강화 중</pre>
+
+  <h3 id="sec2-3">2.3 2025–2026 핵심 시장 트렌드</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>트렌드</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td><strong>포스트바이오틱 우세 전환</strong></td><td>살아있는 균의 안정성 문제 → 사균·대사물 중심으로 이동; 규제 리스크 낮음</td></tr>
+        <tr><td><strong>정밀 발효(Precision Fermentation) 급부상</strong></td><td>합성생물학 기반 고순도 바이오 유래 성분; Geltor, StrainX 등 스타트업 투자 급증</td></tr>
+        <tr><td><strong>세포외소포체(EV) 시장 진입</strong></td><td>2024년 시장 $117.4M → 2030년 CAGR 28.7%; 세균 유래 OMV 화장품 적용 시작</td></tr>
+        <tr><td><strong>갈레닉 성분까지 마이크로바이옴 고려</strong></td><td>BASF IFSCC 2025: 비활성 기제 성분도 피부 마이크로바이옴에 영향 → 제형 전체의 친화성 설계</td></tr>
+        <tr><td><strong>L'Oréal 살아있는 프로바이오틱 특허</strong></td><td>결정화 기술로 살아있는 Lactobacillus를 토포 제품에 안정화; 노화 피부 다양성 복원 소구</td></tr>
+        <tr><td><strong>클린 뷰티 × 마이크로바이옴</strong></td><td>방부제·계면활성제 기피 → 마이크로바이옴 친화 제형 설계가 클린뷰티의 다음 챕터</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[Live Biotherapeutics (LBP)]]</span>
+    <span class="obs-link">[[개인화 스킨케어]]</span>
+    <span class="obs-link">[[AI 기반 피부 진단]]</span>
+  </blockquote>
+
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="sec3">3. 마이크로바이옴 원료 세대별 분류 체계</h2>
+
+  <div class="gen-card g1" id="sec3-1">
+    <div class="gen-badge">1세대</div>
+    <h4>발효 여과물·사균체 시대 (2015–2022)</h4>
+    <p>특정 균주를 배양·발효 후 여과하거나 열처리·분쇄한 성분. '마이크로바이옴'이라는 소구 없이 '발효 성분'으로 마케팅된 경우도 다수.</p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>구분</th><th>정의</th><th>주요 부위</th></tr></thead>
+        <thead><tr><th>원료명</th><th>균주</th><th>주요 효능</th></tr></thead>
         <tbody>
-          <tr><td><strong>모낭 모공 (Follicular pore)</strong></td><td>모간과 피지가 배출되는 개구부</td><td>코, 이마, 뺨</td></tr>
-          <tr><td><strong>땀샘 모공 (Eccrine pore)</strong></td><td>에크린 땀샘의 배출구</td><td>전신, 손발바닥</td></tr>
+          <tr><td><strong>Galactomyces Ferment Filtrate</strong></td><td><em>Galactomyces candidum</em></td><td>미백, 모공 축소, 피지 균형 — SK-II 핵심</td></tr>
+          <tr><td><strong>Bifida Ferment Lysate</strong></td><td><em>Bifidobacterium bifidum</em></td><td>장벽 강화, 항염, pH 조절</td></tr>
+          <tr><td><strong>Lactobacillus Ferment</strong></td><td><em>Lactobacillus</em> spp.</td><td>항염, 진정, 피부 방어</td></tr>
+          <tr><td><strong>Saccharomyces Ferment Filtrate</strong></td><td><em>Saccharomyces cerevisiae</em></td><td>항산화, 세포 재생, 미백</td></tr>
+          <tr><td><strong>Yeast Beta-Glucan</strong></td><td>효모 세포벽 유래</td><td>TLR 활성화, 면역 조절, 장벽 강화</td></tr>
         </tbody>
       </table>
     </div>
-    <p>화장품 원료 개발에서 '모공 케어'는 주로 <strong>모낭 모공</strong>을 타깃으로 한다.</p>
+    <div class="risk-box">⚠️ <strong>한계:</strong> 성분 조성 불명확, 배치 간 재현성 문제, '마이크로바이옴'이라는 기전적 주장 근거 부족.</div>
+  </div>
 
-    <h3 id="sec1-2">1.2 모공 확대의 원인 (3대 메커니즘)</h3>
-    <pre>① 피지 과다 분비 (Hyperseborrhea)
-   → 모공 벽 내측 확장 → 피지·각질 플러그 형성 → 모공 직경 증가
-
-② 탄력 소실 (Elasticity Loss)
-   → 콜라겐/엘라스틴 분해 → 모공 주변 진피 지지력 약화 → 모공 늘어짐 (=노화성 모공)
-
-③ 과각화 (Hyperkeratinization)
-   → 모낭 개구부 각질 축적 → 블랙헤드·화이트헤드 형성 → 기계적 모공 확장</pre>
-    <div class="note-dev">
-      <strong>원료 개발 시사점:</strong> 단일 기전 타깃보다 <strong>피지 조절 + 탄력 강화 + 각질 케어</strong>의 복합 접근이 임상 효과가 크며, 소비자 인식에서는 '수분 케어(88.5%) > 피지 케어 > 노폐물 제거' 순으로 기대효과가 나타난다.
-    </div>
-
-    <h3 id="sec1-3">1.3 모공 케어의 범위 재정의</h3>
-    <pre>[모공 케어] 4대 범주
-─────────────────────────────────────────
-① Pore Tightening     : 모공 직경 가시적 축소 (수렴·탄력)
-② Pore Cleansing      : 모공 내 피지·각질 플러그 용해/흡착 (세정·각질케어)
-③ Pore Refining       : 피부 결 정돈 + 피지 분비량 조절 (장기 리모델링)
-④ Pore Prevention     : 모공 확대 예방 (항산화·UV차단·장벽 강화)
-─────────────────────────────────────────</pre>
-    <blockquote><strong>Node 연결:</strong>
-      <span class="obs-link">[[피지선 생물학]]</span>
-      <span class="obs-link">[[피부 pH와 마이크로바이옴]]</span>
-      <span class="obs-link">[[경피 수분 손실 (TEWL)]]</span>
-    </blockquote>
-
-    <hr>
-
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec2">2. 시장 트렌드 (2024–2026)</h2>
-
-    <h3 id="sec2-1">2.1 글로벌 시장 현황</h3>
+  <div class="gen-card g2" id="sec3-2">
+    <div class="gen-badge">2세대</div>
+    <h4>포스트바이오틱 복합계 시대 (2022–2025)</h4>
+    <p>비가열·특정 대사물 농축·이중 발효 등 고도화된 공정으로 특정 활성 성분(SCFA, 펩타이드, EPS 등)을 정량화하고, 단일 원료보다 복합 포뮬러를 구성.</p>
+    <pre><span class="hl-amber">포스트바이오틱의 구성 성분</span>
+─────────────────────────────────────────────────────
+① 단쇄지방산 (SCFA): Propionic acid, Butyric acid, Acetic acid
+   → 모낭 pH 조절, 항병원균, 장벽 세라마이드 합성 촉진
+② 박테리오신 (Bacteriocin): Nisin, Lugdunin, Mersacidin
+   → 선택적 항균 (병원성균만 억제), S. aureus 쿼럼센싱 억제
+③ 세포외다당류 (EPS): 피부 수분막 형성, TLR4 조절, HA 유사 보습
+④ 미생물 유래 펩타이드: 콜라겐 합성 자극, 항산화, 항균
+⑤ 효소 (Enzyme): 각질 용해, 피지 분해, SOD·Catalase 유사체
+⑥ 비타민·코팩터: B군 비타민(나이아신아마이드 전구체), CoQ10 유사체</pre>
+    <p><strong>대표 신규 사례 (2025):</strong></p>
     <ul>
-      <li>2026년 글로벌 스킨케어 시장 규모: <strong>USD 172.5B</strong> (2031년 $235.7B 전망, CAGR 6.43%)</li>
-      <li>모공 케어 세그먼트는 안티에이징·피지 케어와 중첩되며 지속 고성장</li>
-      <li>개인화 AI 스킨케어 시장: 2024년 $422M → 2030년 $743M 예측</li>
+      <li><em>Akkermansia muciniphila</em> YGMCC2602 유래 포스트바이오틱 → 섬유아세포 증식, 콜라겐 합성, UV 손상 완화 (2025, ScienceDirect)</li>
+      <li><em>Staphylococcus hominis</em> A9 발효 여과물 → <em>S. aureus</em> agr 시스템 억제 (AD 임상 Phase 2)</li>
     </ul>
+  </div>
 
-    <h3 id="sec2-2">2.2 K-뷰티 모공 케어 핵심 트렌드 (2025–2026)</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>트렌드 키워드</th><th>설명</th><th>대표 사례</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Glass Skin / Pore-less Look</strong></td><td>홈케어에서 피부과 시술 효과를 재현하는 '텍스처 개선' 수요 급증</td><td>Medicube, VT Cosmetics</td></tr>
-          <tr><td><strong>Spicule + Exosome 융합</strong></td><td>스피큘이 마이크로채널 형성 → 엑소좀 침투율 극대화; 모공 타이트닝 임상 효과 주목</td><td>Medicube Zero One Day Exosome Shot</td></tr>
-          <tr><td><strong>팩-클렌저 하이브리드</strong></td><td>클렌징 + 모공 케어를 단일 제형으로 구현</td><td>팩 클렌저 카테고리 급성장</td></tr>
-          <tr><td><strong>포스트바이오틱스 확산</strong></td><td>사균체·발효 여과물의 안정성·안전성 강점; 모공 주변 마이크로바이옴 친화 소구</td><td>Galactomyces 발효 여과물, Bifida 라이세이트</td></tr>
-          <tr><td><strong>Dermato-cosmetics</strong></td><td>피부과 처방 성분(레티놀, 아젤라산, BHA 고농도)을 OTC 화장품에 적용</td><td>Paula's Choice, The Ordinary</td></tr>
-          <tr><td><strong>Skin Longevity / 슬로우 에이징</strong></td><td>즉각적 수렴보다 장기 모공 리모델링과 콜라겐 뱅킹에 집중</td><td>콜라겐 뱅킹 루틴 제품군</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 id="sec2-3">2.3 소비자 인식 변화</h3>
-    <ul>
-      <li>모공 빅데이터 분석 결과: '수분', '피지', '노폐물 제거'가 3대 소비자 기대효과</li>
-      <li>Z세대는 즉각 효과(물리적 수렴)보다 <strong>근본 개선(피지 조절, 마이크로바이옴 균형)</strong>을 선호하는 경향 증가</li>
-      <li>'클린 뷰티' 맥락에서 고농도 자극 성분 기피 → 피부 친화적 바이오 유래 성분 수요↑</li>
-    </ul>
+  <div class="gen-card g3" id="sec3-3">
+    <div class="gen-badge">3세대</div>
+    <h4>생태계 설계 플랫폼 시대 (현재 진입)</h4>
+    <p>단일 균주나 단일 대사물이 아닌, 피부 마이크로바이옴 <strong>생태계 전체의 구조와 기능</strong>을 설계하는 플랫폼 기술.</p>
+    <pre><span class="hl-teal">3세대 기술의 3대 축</span>
+────────────────────────────────────────────────────
+① 정밀 발효 (Precision Fermentation)
+   → 합성생물학으로 균주를 최적화 설계
+   → 원하는 활성 성분만 대량 고순도 생산
+   → 지속가능성 + 동물 유래 성분 대체
+② 세포외소포체 기반 (Bacterial/Microbial EVs)
+   → 세균이 자연 방출하는 나노소포체(OMV, MV)
+   → 피부-마이크로바이옴 간 신호전달 매개체
+   → 면역 훈련, 항염, 재생 효능
+③ 마이크로바이옴 생태계 설계 (Ecosystem Engineering)
+   → AI + 메타게노믹스 기반 개인 피부 생태계 분석
+   → 'soil'이 아닌 'ecosystem'을 디자인하는 개념</pre>
     <blockquote><strong>Node 연결:</strong>
-      <span class="obs-link">[[개인화 스킨케어]]</span>
-      <span class="obs-link">[[AI 기반 피부 진단]]</span>
-      <span class="obs-link">[[포스트바이오틱스]]</span>
+      <span class="obs-link">[[메타게노믹스 방법론]]</span>
+      <span class="obs-link">[[멀티-오믹스 분석 파이프라인]]</span>
+      <span class="obs-link">[[상재균 배양 기법]]</span>
+      <span class="obs-link">[[피부 오가노이드]]</span>
     </blockquote>
+  </div>
 
-    <hr>
+  <hr>
 
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec3">3. 모공 케어 접근별 주요 효능 성분</h2>
+  <!-- ─────────────────────── -->
+  <h2 id="sec4">4. 핵심 원료 카테고리 심층 분석</h2>
 
-    <h3 id="sec3-1">3.1 모공 타이트닝 (Pore Tightening)</h3>
-    <p>물리·화학적 수렴 또는 콜라겐/엘라스틴 생합성 자극을 통한 모공 직경 축소</p>
+  <h3 id="sec4-1">4.1 프리바이오틱 (Prebiotic)</h3>
+  <p>유익 상재균의 먹이가 되거나 선택적 증식을 돕는 기질</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>성분</th><th>균주 선택성</th><th>피부 효능</th><th>특이사항</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Inulin / FOS</strong></td><td><em>Lactobacillus</em>, <em>Bifidobacterium</em> 증식</td><td>장벽 강화, 수분 보습, 항염</td><td>식품 유래; 안전성 최고</td></tr>
+        <tr><td><strong>HMO (Human Milk Oligosaccharide)</strong></td><td><em>B. infantis</em> 등 유익균</td><td>신생아 피부 면역 훈련; 성인 장벽 회복</td><td>2024년 이후 스킨케어 적용 활발</td></tr>
+        <tr><td><strong>β-Glucan (효모/귀리)</strong></td><td>TLR2/Dectin-1 자극</td><td>면역 조절, 장벽 강화, 항염</td><td>프리바이오틱 + 면역 활성 이중 역할</td></tr>
+        <tr><td><strong>Niacinamide</strong></td><td><em>C. acnes</em> 특정 phylotype 선택압</td><td>피지 조절, 모공, 미백</td><td><span class="obs-link">[[pore_care_ideation_report]]</span> 참조</td></tr>
+        <tr><td><strong>Postbiotic SCFA (외인성 공급)</strong></td><td>환경 pH 조절 → 유익균 환경 조성</td><td>피부 산성 환경 유지, 각질 케어</td><td><span class="obs-link">[[단쇄지방산 (SCFA)]]</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="sec4-2">4.2 프로바이오틱 (Probiotic)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>접근</th><th>설명</th><th>현황</th><th>난점</th></tr></thead>
+      <tbody>
+        <tr><td><strong>사용 전 건조 균주</strong></td><td>Lactobacillus 등 동결건조 균주 → 제품 사용 시 활성화 개념</td><td>마케팅 소구 있으나 피부 정착 근거 부족</td><td>안정성, 정착성</td></tr>
+        <tr><td><strong>L'Oréal 결정화 프로바이오틱</strong></td><td>특허 기술로 결정 상태 유지 → 피부 적용 시 활성화</td><td>특허 출원 (2024–2025)</td><td>규제 — 살아있는 균은 의약품 경계</td></tr>
+        <tr><td><strong>Live Biotherapeutics (LBP)</strong></td><td>특정 균주 이식으로 피부 생태계 교정</td><td><em>S. hominis</em> A9 Phase 2 (AD), <em>Roseomonas mucosa</em> 임상</td><td>화장품 vs 의약품 규제 경계</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="sec4-3">4.3 포스트바이오틱 (Postbiotic)</h3>
+  <p>화장품 마이크로바이옴 원료의 현재 중심축</p>
+  <pre><span class="hl-amber">포스트바이오틱 3대 형태</span>
+────────────────────────────────────────────────────────────
+① 발효 여과물 (Ferment Filtrate)
+   → 균 배양 후 균체 제거, 상등액 농축
+   → 대표: Galactomyces Ferment Filtrate, Saccharomyces Ferment
+② 라이세이트 (Lysate / Tyndallizate)
+   → 균체 파쇄 또는 열처리 후 세포 내용물 방출
+   → 대표: Bifida Ferment Lysate, Lactobacillus Lysate
+③ 특정 대사물 순수 정제
+   → EPS, 박테리오신, SCFA, 미생물 유래 펩타이드
+   → 대표: Nisin, Butyric acid, 균 유래 HA</pre>
+  <p><strong>2025년 핵심 신규 포스트바이오틱 성분:</strong></p>
+  <ul>
+    <li><strong>Akkermansia muciniphila 유래 포스트바이오틱:</strong> 섬유아세포 증식↑, 콜라겐 합성↑, UV 방어, 피부 수분 증가</li>
+    <li><strong>Engineered Bacteriocin + Endolysin 복합:</strong> 선택적 항균 + 마이크로바이옴 보존 시너지 (USPTO 특허)</li>
+    <li><strong>Parabacteroides goldsteinii OMV:</strong> 건선 피부 염증 억제 (동물 모델 검증)</li>
+  </ul>
+
+  <h3 id="sec4-4">4.4 발효 공학 소재 (Fermentation-derived)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>소재</th><th>생산 균주</th><th>피부 효능</th><th>기술 레벨</th></tr></thead>
+      <tbody>
+        <tr><td><strong>미생물 유래 히알루론산</strong></td><td><em>Streptococcus zooepidemicus</em>, 재조합 균주</td><td>보습, 장벽</td><td>상용화</td></tr>
+        <tr><td><strong>미생물 유래 콜라겐 (Geltor)</strong></td><td>합성생물학 균주</td><td>탄력, 주름</td><td>상용화 초기</td></tr>
+        <tr><td><strong>에퀄 (S-equol)</strong></td><td>이소플라본 발효 전환</td><td>항염, 항산화, 에스트로겐 유사</td><td>상용화</td></tr>
+        <tr><td><strong>발효 레스베라트롤</strong></td><td>피키아 발효</td><td>항산화, 항노화</td><td>상용화</td></tr>
+        <tr><td><strong>미생물 세라마이드</strong></td><td>효모 발효 유래</td><td>장벽 강화, 보습</td><td>성장 중</td></tr>
+        <tr><td><strong>정밀발효 레티놀 전구체</strong></td><td>합성생물학 균주</td><td>항노화, 세포 회전율↑</td><td>연구·개발 단계</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="sec5">5. 주목받는 기전 및 효능 컨셉</h2>
+
+  <h3 id="sec5-1">5.1 TLR (Toll-Like Receptor) 신호 조절</h3>
+  <p>마이크로바이옴 성분이 피부 면역의 '선천성 훈련(innate training)'에 관여하는 핵심 기전</p>
+  <pre><span class="hl-teal">TLR2</span> (그람양성균 세포벽 인식): LTA, PGN 자극
+  → S. epidermidis LTA → TLR2 → NF-κB 적정 활성화 → AMP 분비 + Tight Junction 강화
+
+<span class="hl-blue">TLR4</span> (LPS 인식, 그람음성균):
+  → 일부 EPS는 TLR4 길항 → 항염 효과
+  → 저용량 자극 → 면역 관용 형성
+
+<span class="hl-amber">Dectin-1</span> (β-glucan 인식):
+  → 효모·진균 β-glucan → Dectin-1 → 항진균 면역 + 장벽 강화</pre>
+
+  <h3 id="sec5-2">5.2 쿼럼센싱 (Quorum Sensing) 조절</h3>
+  <ul>
+    <li><strong>Autoinducer 억제:</strong> <em>S. hominis</em> 유래 lugdunin → <em>S. aureus</em> agr 시스템 억제 → 독소 분비 차단</li>
+    <li><strong>Anti-QS 식물 유래 소재:</strong> 커큐민, 갈산, 캡사이신 → QS 신호 분자 억제</li>
+    <li><strong>C. acnes QS 조절:</strong> 건강 phylotype(I-1, III)이 병원성 phylotype(RT4/RT5)의 QS 억제</li>
+  </ul>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[쿼럼센싱]]</span>
+    <span class="obs-link">[[MRSA 방어 전략]]</span>
+    <span class="obs-link">[[Staphylococcus epidermidis]]</span>
+  </blockquote>
+
+  <h3 id="sec5-3">5.3 AhR (Aryl Hydrocarbon Receptor) 축</h3>
+  <ul>
+    <li>인돌 (tryptophan 대사물): <em>C. acnes</em>, <em>Lactobacillus</em> 유래 → AhR 활성화 → Filaggrin 발현↑, 장벽 수복</li>
+    <li>FICZ (6-formylindolo[3,2-b]carbazole): AhR 리간드 → 피부 장벽 재건</li>
+    <li>2024년 <em>Experimental &amp; Molecular Medicine</em>: AhR 경로가 피부 장벽과 마이크로바이옴의 크로스토크 핵심 경로 확인</li>
+  </ul>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[AhR 신호 경로]]</span>
+    <span class="obs-link">[[피부 장벽 기능]]</span>
+    <span class="obs-link">[[Tight Junction 단백질]]</span>
+  </blockquote>
+
+  <h3 id="sec5-4">5.4 Microbiota-Skin Axis 확장</h3>
+  <ul>
+    <li><strong>장-피부 축 (Gut-Skin Axis):</strong> 구강 프로바이오틱·식이 → 장 마이크로바이옴 변화 → 피부 염증·피지·노화 간접 조절</li>
+    <li><strong>두피-피부 축:</strong> 두피 마이크로바이옴(<em>Malassezia</em>, <em>S. capitis</em>)이 얼굴 피부에 미치는 연쇄 영향</li>
+    <li><strong>피부-뇌 축 (Skin-Brain Axis):</strong> 2025년 신규 연구 — 안면 마이크로바이옴이 심리적 웰빙과 연관 → '스트레스 완화 마이크로바이옴 코스메틱' 소구 가능성</li>
+  </ul>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[장-피부 축 (Gut-Skin Axis)]]</span>
+    <span class="obs-link">[[피부-뇌 축 (Skin-Brain Axis)]]</span>
+    <span class="obs-link">[[심리적 스트레스와 피부]]</span>
+  </blockquote>
+
+  <h3 id="sec5-5">5.5 피부 노화와 마이크로바이옴</h3>
+  <ul>
+    <li>피부 마이크로바이옴 다양성 ↑ = 주름 증가·TEWL↓ 상관 (UCSD 2024)</li>
+    <li>Unilever 2025: 안면 마이크로바이옴이 노화 외관과 상관 → <strong>'마이크로바이옴 바이오에이징 마커'</strong> 개념 도입</li>
+    <li><em>Methanomassiliicoccales</em> (고세균): 고령 피부에서 증가 — 노화 마이크로바이옴 지표</li>
+  </ul>
+  <blockquote><strong>Node 연결:</strong>
+    <span class="obs-link">[[피부 노화와 마이크로바이옴]]</span>
+    <span class="obs-link">[[생물학적 나이 마커]]</span>
+    <span class="obs-link">[[skin_microbiome_report §5.3]]</span>
+  </blockquote>
+
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="sec6">6. Next-Microbiome 원료 개발 Ideation</h2>
+  <blockquote>
+    <strong>Ideation 방법론:</strong> 기존 1·2세대 마이크로바이옴 원료의 한계(안정성·기전 불명확·개인차·규제 불확실성)를 출발점으로, 3세대 기술 트렌드와 교차해 실현 가능성 높은 6개 방향을 도출
+  </blockquote>
+
+  <!-- Next-01 -->
+  <div class="concept-card" id="next01">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-01 &nbsp;—&nbsp; 세균 유래 세포외소포체 (Bacterial OMV) — 마이크로바이옴 신호 나르는 나노캐리어 원료
+    </div>
+    <div class="field-label">배경</div>
+    <p>세균은 자연적으로 <strong>외막소포체(Outer Membrane Vesicle, OMV)</strong> 또는 <strong>막소포체(Membrane Vesicle, MV)</strong>를 방출한다. 이는 균-균, 균-숙주 간 신호를 전달하는 '마이크로바이옴의 언어'다. 2025년 <em>Experimental Dermatology</em> 리뷰에 따르면 피부 마이크로바이옴 유래 OMV는 면역 조절·장벽 강화·항염 소구에서 엑소좀과 경쟁할 최유력 차세대 바이오소재다.</p>
+    <div class="field-label">핵심 메커니즘</div>
+    <pre>균주 배양 → OMV 자연 방출 (직경 20–300 nm)
+OMV 내용물: LPS 단편, 균주 특이적 단백질, RNA, 효소, 독소 모사체
+  → <span class="hl-teal">TLR 리간드 포함</span> → 피부 선천 면역 훈련 (Trained Immunity)
+  → <span class="hl-blue">균주 특이적 항균 단백질 탑재</span> → 선택적 병원균 억제
+  → <span class="hl-amber">EPS·대사물 탑재</span> → 유효성분 피부 세포 내 전달</pre>
+    <div class="field-label">원료 개발 방향</div>
+    <ul>
+      <li>피부 상재균 (<em>S. epidermidis</em>, <em>C. acnes</em> 건강 phylotype) 배양 → 규격화된 OMV 정제 (초고속 원심분리, 크기배제 크로마토그래피)</li>
+      <li>염증 유발 성분(LPS 전장) 제거한 <strong>LPS-free OMV</strong> 또는 de-LPS 처리</li>
+      <li><em>Parabacteroides goldsteinii</em> OMV: 건선 피부 염증 억제 동물 모델 근거 → 피부 장벽 염증 화장품 확장 검토</li>
+      <li>OMV에 원하는 활성 성분을 담는 <strong>엔지니어드 OMV</strong> — 합성생물학으로 OMV 조성 조절</li>
+    </ul>
+    <div class="diff-box">✅ <strong>차별점:</strong> 기존 식물 엑소좀·줄기세포 엑소좀 대비 <strong>대량 생산 가능</strong> (세균 배양 → 원가 경쟁력) / '피부 마이크로바이옴의 자연 신호 물질'이라는 혁신적 소구 / 나노캐리어 딜리버리 플랫폼</div>
+    <div class="risk-box">⚠️ <strong>리스크:</strong> 안전성 평가 (OMV 내 독성 성분 제거 공정 필수) / 규격화·배치 재현성 확보 / 소비자 소구 전략 필요</div>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
+      <span class="obs-link">[[skin_microbiome_report §2.3]]</span>
+      <span class="obs-link">[[파지 치료 (Phage Therapy)]]</span>
+      <span class="obs-link">[[피부 오가노이드]]</span>
+    </blockquote>
+  </div>
+
+  <!-- Next-02 -->
+  <div class="concept-card" id="next02">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-02 &nbsp;—&nbsp; 정밀 발효 (Precision Fermentation) × 합성생물학 — 피부 마이크로바이옴 대사물의 무한 확장
+    </div>
+    <div class="field-label">배경</div>
+    <p>전통 발효는 균주가 자연적으로 만드는 성분에 의존한다. <strong>정밀 발효</strong>는 CRISPR·대사공학으로 균주를 최적화해 원하는 성분을 원하는 양으로 생산한다. 동물 유래 성분 대체·지속가능성·고순도의 3가지 트렌드를 동시에 충족한다.</p>
+    <div class="field-label">원료 개발 방향</div>
+    <pre>① <span class="hl-teal">피부 마이크로바이옴 특이적 대사물 대량 생산</span>
+   S. epidermidis가 소량 생산하는 항-UV SCFAs
+   → 정밀 발효 균주로 산업적 규모 생산 가능화
+
+② <span class="hl-blue">피부 상재균 유래 펩타이드 생산</span>
+   C. acnes 유래 항균 펩타이드 → 유전자 클로닝 → 재조합 생산
+
+③ <span class="hl-amber">마이크로바이옴 관련 신규 보습제 생산</span>
+   균 유래 EPS → HA 유사 보습력 → 균주 배양 최적화로 고수율 EPS 생산
+
+④ 동물 유래 성분 대체
+   미생물 유래 콜라겐 (Geltor), 효모 발효 스쿠알렌
+
+⑤ 희소 마이크로바이옴 대사물 공급
+   Akkermansia 유래 Amuc_1100 단백질 → 정밀 발효로 공급 가능화</pre>
+    <div class="diff-box">✅ <strong>차별점:</strong> '마이크로바이옴 대사물'의 구조적 동일성 유지 + 무한 확장성 / 지속가능성·동물 프리 → ESG 소구 / 기존 화장품 규제 틀의 '발효 유래 성분'으로 분류 가능 → 규제 리스크 최소</div>
+    <p><strong>기술 파트너 생태계:</strong> Geltor (콜라겐), StrainX Bioworks (정밀 발효 플랫폼), Ginkgo Bioworks (합성생물학 플랫폼)</p>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
+      <span class="obs-link">[[상재균 배양 기법]]</span>
+      <span class="obs-link">[[멀티-오믹스 분석 파이프라인]]</span>
+      <span class="obs-link">[[피지 대사]]</span>
+    </blockquote>
+  </div>
+
+  <!-- Next-03 -->
+  <div class="concept-card" id="next03">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-03 &nbsp;—&nbsp; 비(非)장내균 유래 신규 피부 상재균 소재 — Akkermansia, Corynebacterium 계열 확장
+    </div>
+    <div class="field-label">배경</div>
+    <p>마이크로바이옴 화장품의 균주 소재는 역사적으로 <strong>장내 유산균(Lactobacillus, Bifidobacterium)</strong>에 편중되어 있다. 그러나 피부 생태학적으로 실제 피부에 상주하며 중요한 기능을 하는 균주들이 소재화되지 않은 상태로 남아있다.</p>
+    <div class="field-label">주목 신규 균주</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>성분명</th><th>작용 기전</th><th>권장 농도</th><th>특이사항</th></tr></thead>
+        <thead><tr><th>균주</th><th>피부 기능</th><th>소재화 방향</th><th>성숙도</th></tr></thead>
         <tbody>
-          <tr><td><strong>Niacinamide</strong> (Vit B3)</td><td>피지 분비↓, 탄력 개선, 모공 주변 각질 정돈</td><td>2–10%</td><td>가장 광범위한 임상 근거; 모든 피부 타입 적용 가능</td></tr>
-          <tr><td><strong>Retinol / Retinal</strong></td><td>콜라겐 합성↑, 세포 회전율↑, 모낭 과각화 억제</td><td>0.025–1%</td><td>장기(4–12주) 사용으로 모공 리모델링; 광 민감성 주의</td></tr>
-          <tr><td><strong>Adenosine</strong></td><td>세포 에너지 대사 활성, 진피 탄력 개선</td><td>0.04%~(KFD 기능성)</td><td>주름 개선 기능성 고시 원료; 모공 주변 탄력에 보조적 기여</td></tr>
-          <tr><td><strong>Witch Hazel</strong> (Hamamelis)</td><td>탄닌 성분의 수렴 작용, 항염</td><td>0.5–5%</td><td>즉각적 수렴 효과; 알코올 비함유 추출물 선호</td></tr>
-          <tr><td><strong>Peptides</strong> (Matrixyl, Argireline 등)</td><td>콜라겐/엘라스틴 합성 신호 자극</td><td>0.001–1%</td><td>2025–2026 핵심 성장 카테고리; 신호 펩타이드 중심</td></tr>
-          <tr><td><strong>Green Tea (EGCG)</strong></td><td>항산화, MMP 억제, 피지 조절</td><td>0.1–2%</td><td>항염·항산화 보조 성분으로 시너지</td></tr>
-          <tr><td><strong>Horsetail Extract</strong></td><td>유기 실리카로 피부 탄력 지지</td><td>0.5–2%</td><td>식물성 탄력 강화 성분</td></tr>
-          <tr><td><strong>AhR Ligand</strong> (인돌, FICZ 등)</td><td>AhR 신호 경로 통한 피부 장벽·탄력 조절</td><td>연구 단계</td><td><span class="obs-link">[[AhR 신호 경로]]</span>와 연계; 마이크로바이옴 친화적 신호</td></tr>
+          <tr><td><strong><em>Akkermansia muciniphila</em></strong></td><td>콜라겐 합성↑, UV 손상 억제, 피부 수분↑</td><td>포스트바이오틱 3종 (여과물·라이세이트·EV)</td><td><span class="star">★★★</span></td></tr>
+          <tr><td><strong><em>Corynebacterium</em> spp.</strong></td><td>요소 분해, 습윤 부위 AMPs, pH 조절</td><td>IFSCC 2025 BASF 피부 노화 연관 발표</td><td><span class="star">★★☆</span></td></tr>
+          <tr><td><strong><em>Roseomonas mucosa</em></strong></td><td>AD 피부에서 <em>S. aureus</em> 억제, TH2 개선</td><td>LBP 임상 → 포스트바이오틱 전환 가능</td><td><span class="star">★★★</span></td></tr>
+          <tr><td><strong><em>Cutibacterium granulosum</em></strong></td><td><em>C. acnes</em>와 경쟁, 피지선 건강 유지</td><td>건강 phylotype 선별 → 포스트바이오틱</td><td><span class="star">★☆☆</span></td></tr>
+          <tr><td><strong>암모니아 산화 고세균 (AOA)</strong></td><td>피부 pH·암모니아 조절 (땀 유래 암모니아 산화)</td><td>고세균 유래 효소·대사물</td><td><span class="star">★☆☆</span></td></tr>
         </tbody>
       </table>
     </div>
-    <blockquote><strong>Note:</strong> Niacinamide + BHA 조합은 '모공 클렌징 후 타이트닝'의 황금 루틴으로 임상 권고됨 (Paula's Choice 프로토콜, 피부과학 전문의 권장).</blockquote>
-
-    <h3 id="sec3-2">3.2 모공 클렌징 (Pore Cleansing &amp; Detox)</h3>
-    <p>모공 내 피지 플러그·각질·오염물 용해 및 흡착 제거</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>성분명</th><th>작용 기전</th><th>제형 적합도</th><th>특이사항</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Salicylic Acid (BHA)</strong></td><td>지용성 → 모공 내벽 침투, 각질 결합 해리</td><td>클렌저, 토너, 세럼, 패드</td><td>0.5–2% (leave-on); 가장 강력한 모공 클렌징</td></tr>
-          <tr><td><strong>LHA</strong> (Lipo-Hydroxy Acid)</td><td>BHA 유도체; 더 천천히 분해되어 자극 적음</td><td>세럼, 앰플</td><td>L'Oréal 원천 기술; 피부 적합성 우수</td></tr>
-          <tr><td><strong>Glycolic Acid (AHA)</strong></td><td>수용성 표면 각질 제거, 모공 입구 각질 해리</td><td>토너, 패드, 세럼</td><td>10% 4주 사용 시 모공 크기 유의미한 감소 확인</td></tr>
-          <tr><td><strong>Lactic Acid</strong></td><td>분자 크기 큼 → Glycolic보다 자극 적음; 보습 효과 병행</td><td>토너, 클렌저</td><td>민감성 피부에 적합한 AHA</td></tr>
-          <tr><td><strong>Mandelic Acid</strong></td><td>가장 큰 분자 AHA; 항균성 병행</td><td>세럼, 마스크</td><td>여드름성 모공에 특히 유효</td></tr>
-          <tr><td><strong>PHA</strong> (Gluconolactone, Lactobionic acid)</td><td>수분 결합 특성 + 온화한 각질 케어</td><td>모든 제형</td><td>민감성·건조성 피부의 저자극 모공 케어</td></tr>
-          <tr><td><strong>Kaolin / Bentonite Clay</strong></td><td>피지·노폐물 흡착</td><td>클레이 마스크, 팩 클렌저</td><td>Kaolin(건성용) vs Bentonite(지성용) 구분</td></tr>
-          <tr><td><strong>Activated Charcoal</strong></td><td>다공성 구조로 피지·독소 흡착</td><td>클렌저, 마스크, 스틱</td><td>비주얼 마케팅 강점; 세정 후 유분기 제거</td></tr>
-          <tr><td><strong>Zinc PCA</strong></td><td>피지 분비 조절(5α-환원효소 억제), 항균</td><td>토너, 세럼</td><td>장기적 모공 케어에 필수적인 피지 컨트롤러</td></tr>
-          <tr><td><strong>Papain / Bromelain</strong> (효소)</td><td>단백질 분해 효소 → 각질·피지 단백질 용해</td><td>효소 클렌저, 마스크</td><td>발효 유래 성분으로 마이크로바이옴 친화 가능성</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote><strong>Note:</strong> 팩-클렌저 하이브리드 제형은 <strong>Clay + BHA + Probiotic lysate</strong>의 3중 조합이 가장 주목받는 포뮬러 방향으로 부상 중.</blockquote>
-
-    <h3 id="sec3-3">3.3 피부과-like 전문 케어 성분 (Cosmeceutical-grade)</h3>
-    <p>피부과 시술에서 사용되던 성분/기술을 홈케어에 이식하는 'Derma-cosmetics' 패러다임</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>성분/기술</th><th>피부과 원조</th><th>홈케어 이식 형태</th><th>모공 케어 효능</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Azelaic Acid</strong> (아젤라산)</td><td>처방 여드름 치료제 (20%)</td><td>OTC 10% 이하 세럼</td><td>5α-환원효소 억제 → 피지↓; 항균·항염; 모공 정돈</td></tr>
-          <tr><td><strong>Adapalene</strong> (레티노이드)</td><td>처방 레티노이드</td><td>0.1% OTC (미국 승인)</td><td>모낭 과각화 억제 → 모공 막힘 예방; 콜라겐 합성↑</td></tr>
-          <tr><td><strong>High-% Glycolic Acid Peel</strong></td><td>화학 박피 (30–70%)</td><td>홈 필링 패드 (7–15%)</td><td>모공 크기 감소; 피부 결 균등화</td></tr>
-          <tr><td><strong>Spicule</strong> (스피큘)</td><td>미세침 시술 개념</td><td>앰플, 세럼 (Medicube, VT)</td><td>마이크로 채널 형성 → 유효 성분 침투 60배 ↑; 모공 타이트닝</td></tr>
-          <tr><td><strong>Exosome</strong></td><td>재생의학·PRP 시술</td><td>스피큘과 복합 (앰플, 샷 세럼)</td><td>세포 재생·콜라겐 신호 → 모공 주변 진피 회복</td></tr>
-          <tr><td><strong>PDT 광감각제 원료</strong></td><td>광역동치료 (PDT)</td><td>광활성 세럼 (LED 패치 연동)</td><td><em>C. acnes</em> 포르피린 활성화 → 여드름성 모공 케어</td></tr>
-          <tr><td><strong>Lactic Acid 고농도</strong></td><td>피부과 필링</td><td>10–12% 홈 토너</td><td>모공 리모델링 + 보습 병행</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote><strong>Note:</strong> 2026년 K-뷰티 주요 기술 패러다임은 <strong>스피큘 × 엑소좀 융합</strong>으로 집약되며, 모공 타이트닝 소구에서 피부과 시술 대체 포지셔닝이 강화되고 있다.</blockquote>
-
-    <h3 id="sec3-4">3.4 최신 딜리버리 &amp; 바이오테크 기술</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>기술</th><th>원리</th><th>모공 케어 적용</th><th>현황</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Spicule 딜리버리</strong></td><td>해면 유래 마이크로니들 → 피부 장벽 일시 투과</td><td>모공 타이트닝 성분의 진피 전달</td><td>상용화 (Medicube, VT)</td></tr>
-          <tr><td><strong>Exosome</strong></td><td>세포 유래 나노소포체(50–200 nm)</td><td>모공 주변 세포 재생 신호 전달</td><td>임상 적용 확대 중</td></tr>
-          <tr><td><strong>나노리포솜/나노캡슐</strong></td><td>활성 성분 보호 + 서방 방출</td><td>BHA, 레티놀의 자극 완화 + 지속성 강화</td><td>상용화</td></tr>
-          <tr><td><strong>발효 공학 (Precision Fermentation)</strong></td><td>특정 균주 배양으로 고순도 바이오 유래 성분 생산</td><td>Galactomyces 여과물, 펩타이드 대량 생산</td><td>급성장</td></tr>
-          <tr><td><strong>공간 메타게노믹스</strong></td><td>모낭 단위 마이크로바이옴 분석</td><td>개인별 모낭 상재균 프로파일 → 맞춤 원료 타깃</td><td>연구 단계</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <hr>
-
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec4">4. 마이크로바이옴 × 모공 케어: 접점 분석</h2>
-
-    <h3 id="sec4-1">4.1 모낭 내 마이크로바이옴의 역할</h3>
-    <p>모공(모낭)은 피부에서 가장 마이크로바이옴 밀도가 높은 구조물이다. <strong>피지선 풍부 부위(이마·코·등)</strong>는 <em>Cutibacterium acnes</em>와 <em>Malassezia</em> 속이 우점하며 모공 건강에 직접 영향을 미친다.</p>
-    <pre>[정상 모낭]
-  Cutibacterium acnes (우점, 혐기성)
-    → 피지 분해 → 지방산 생성 → pH 4.5–5.5 유지 → 병원균 억제
-  Staphylococcus epidermidis
-    → 모낭 입구 보호막 형성 → 외부 병원균 차단
-  Malassezia spp.
-    → 지질 의존성 효모; 균형 시 공생, 이상증 시 지루성 피부염·여드름 악화
-
-[이상증 (Dysbiosis) 모낭]
-  C. acnes 특정 phylotype(RT4, RT5) 과다 증식
-    → NLRP3 인플라마좀 활성화 → 염증 → 모공 벽 손상 → 모공 확대
-  S. aureus 침입
-    → 모낭 염증 악화 → 섬유화 → 모공 변형</pre>
-
-    <h3 id="sec4-2">4.2 마이크로바이옴과 모공 확대의 인과 관계</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>마이크로바이옴 변화</th><th>모공에 미치는 영향</th><th>근거</th></tr></thead>
-        <tbody>
-          <tr><td><em>C. acnes</em> phylotype RT4/RT5 과다</td><td>피지선 과분비 유도 → 모공 확장</td><td>2024, <em>JEADV Clinical Practice</em></td></tr>
-          <tr><td><em>S. aureus</em> 과다</td><td>IL-4/IL-13 경로 → 피부 장벽 파괴 → 모공 주변 탄력 감소</td><td><span class="obs-link">[[skin_microbiome_report §4.1]]</span></td></tr>
-          <tr><td><em>Malassezia</em> 과다</td><td>지질 대사산물 자극 → 모낭 주변 염증</td><td><span class="obs-link">[[skin_microbiome_report §2.2]]</span></td></tr>
-          <tr><td><em>S. epidermidis</em> 감소</td><td>모공 보호 AMPs↓, 모낭 TJ 단백질 발현↓</td><td><span class="obs-link">[[Staphylococcus epidermidis]]</span></td></tr>
-          <tr><td>박테리오파지 불균형</td><td>상재균 조절 실패 → 병원성 phylotype 확산</td><td>2025, <em>Microbiology Spectrum</em></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3 id="sec4-3">4.3 마이크로바이옴 친화 성분 현황</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>성분 카테고리</th><th>대표 성분</th><th>모공 케어 효능</th><th>비고</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Galactomyces 발효 여과물</strong></td><td>Galactomyces Ferment Filtrate</td><td>모공 축소·피지 균형·미백</td><td>K-뷰티 클래식; SK-II 핵심 성분</td></tr>
-          <tr><td><strong>Bifida 라이세이트</strong></td><td>Bifida Ferment Lysate</td><td>피부 장벽↑, 피지 조절, 마이크로바이옴 pH 조절</td><td>모공 주변 장벽 회복</td></tr>
-          <tr><td><strong>유산균 발효 여과물</strong></td><td>Lactobacillus Ferment</td><td>항염, 피지 과분비 억제</td><td>민감성 모공에 적합</td></tr>
-          <tr><td><strong>세라마이드 프리바이오틱</strong></td><td>Inulin, FOS, HMO</td><td>유익균 증식 지원 → 간접 모공 케어</td><td><span class="obs-link">[[마이크로바이옴 치료전략]]</span></td></tr>
-          <tr><td><strong>포스트바이오틱 SCFA</strong></td><td>Propionic acid, Butyric acid</td><td>모낭 내 pH 조절, 항병원균</td><td><span class="obs-link">[[단쇄지방산 (SCFA)]]</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <blockquote><strong>Node 연결:</strong>
+    <div class="diff-box">✅ <strong>차별점:</strong> 기존 '요거트 마케팅(유산균 = 피부에 좋다)' 탈피 / 실제 피부 생태학에 기반한 과학적 소구 → 프리미엄 Dermocosmetic 포지셔닝 / 피부 부위별 전문 소재 개발 가능</div>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
       <span class="obs-link">[[Cutibacterium acnes]]</span>
       <span class="obs-link">[[Staphylococcus epidermidis]]</span>
+      <span class="obs-link">[[암모니아 산화 고세균]]</span>
+      <span class="obs-link">[[skin_microbiome_report §2.4]]</span>
+    </blockquote>
+  </div>
+
+  <!-- Next-04 -->
+  <div class="concept-card" id="next04">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-04 &nbsp;—&nbsp; 엔지니어드 포스트바이오틱 — 박테리오신 + 엔도라이신 복합 정밀 원료
+    </div>
+    <div class="field-label">배경</div>
+    <p>2023년 USPTO 특허(US11633348, US12214070)에서 <strong>박테리오신 + 엔도라이신의 복합 포스트바이오틱</strong>이 단독 사용 대비 시너지 효과를 보임이 확인되었다. 마이크로바이옴 성분을 '자연에서 추출'하는 수준을 넘어, 원하는 기능을 가진 성분을 <strong>설계(engineering)</strong>하는 새로운 원료 패러다임이다.</p>
+    <div class="field-label">핵심 성분</div>
+    <pre><span class="hl-teal">박테리오신 (Bacteriocin):</span>
+  → 미생물이 생산하는 항균 단백질/펩타이드
+  → Nisin (Lactococcus lactis 유래): 그람양성균 광범위 억제
+  → Lugdunin (S. hominis 유래): S. aureus 특이적 억제
+  → Mutacin (S. mutans 유래): 구강·피부 적용 가능성
+
+<span class="hl-blue">엔도라이신 (Endolysin):</span>
+  → 파지가 세균을 용균시키는 효소 → 세균 세포벽 분해
+  → C. acnes, S. aureus 특이적 엔도라이신 식별 가능
+
+<span class="hl-amber">복합 시너지:</span>
+  박테리오신 (막 퍼미아빌리티 증가) + 엔도라이신 (세포벽 분해)
+  → 병원성균 이중 표적 → 내성 발생 가능성 극소화</pre>
+    <div class="field-label">제형 아이디어</div>
+    <p>앰플, 스팟 트리트먼트, 두피 에센스, 마이크로바이옴 밸런싱 세럼</p>
+    <div class="diff-box">✅ <strong>차별점:</strong> 항생제 대체 + 마이크로바이옴 보존이라는 <strong>윤리적 소구</strong> / 특허 가능성 높음 (IP화) / Phage therapy의 화장품 버전 포지셔닝</div>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
+      <span class="obs-link">[[파지 치료 (Phage Therapy)]]</span>
       <span class="obs-link">[[항균 펩타이드 (AMPs)]]</span>
-      <span class="obs-link">[[단쇄지방산 (SCFA)]]</span>
-      <span class="obs-link">[[피부 면역]]</span>
+      <span class="obs-link">[[쿼럼센싱]]</span>
+      <span class="obs-link">[[pore_care_ideation_report #Concept C]]</span>
     </blockquote>
+  </div>
 
-    <hr>
+  <!-- Next-05 -->
+  <div class="concept-card" id="next05">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-05 &nbsp;—&nbsp; 마이크로바이옴 친화 제형 설계 2.0 — 기제 성분까지 재설계
+    </div>
+    <div class="field-label">배경</div>
+    <p>BASF IFSCC 2025 충격적 결과 발표: <strong>화장품의 비활성 기제 성분(방부제, 계면활성제, pH 조절제, 용매)도 피부 마이크로바이옴을 유의미하게 변화시킨다.</strong> '마이크로바이옴 성분'을 추가하는 것에서 벗어나, 제형 전체를 마이크로바이옴 생태계 관점에서 재설계해야 한다는 패러다임.</p>
+    <div class="field-label">재설계 대상 성분 카테고리</div>
+    <pre><span class="hl-amber">① 방부 시스템 (Preservation)</span>
+   기존: Phenoxyethanol, Methylparaben, MIT → 마이크로바이옴 교란 가능
+   대안: <span class="hl-teal">LACTOBACILLUS FERMENT (발효 방부제)</span>
+        → Glycolipid (미생물 유래 바이오서팩탄트)
+        → 저pH 완충 시스템 (산 기반 방부)
 
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec5">5. Brainstorming &amp; Ideation — 마이크로바이옴 기반 모공 케어 원료 컨셉</h2>
-    <blockquote>
-      <strong>Ideation 방법론:</strong> 모공 케어의 4대 범주(타이트닝·클렌징·리파이닝·예방)와 마이크로바이옴 접근법(프리바이오틱·프로바이오틱·포스트바이오틱·파지·LBP)의 교차 매트릭스를 통해 도출
+<span class="hl-amber">② 계면활성제 (Surfactant)</span>
+   기존: SLS, SLES → 마이크로바이옴 다양성 파괴
+   대안: <span class="hl-teal">바이오서팩탄트 (Sophorolipid, Rhamnolipid)</span>
+        → 피부 친화적 + 마이크로바이옴 보존 + 생분해성
+
+<span class="hl-amber">③ 용매·보습제</span>
+   기존: 부틸렌글리콜, 프로필렌글리콜
+   대안: 균 유래 EPS, 발효 글리세롤, 프리바이오틱 보습제
+
+<span class="hl-amber">④ pH 조절</span>
+   기존: 인공 pH 조절제
+   대안: 유기산 발효 여과물 기반 완충 시스템</pre>
+    <div class="diff-box">✅ <strong>차별점:</strong> 기존 마이크로바이옴 화장품과의 근본적 차별화 — '성분을 추가'하는 것이 아닌 '제형 자체를 마이크로바이옴-설계' / <strong>마이크로바이옴 친화 지수(MFI)</strong> 지표화 → 브랜드 인증·소구 수단</div>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
+      <span class="obs-link">[[피부 pH와 마이크로바이옴]]</span>
+      <span class="obs-link">[[피부 장벽 기능]]</span>
+      <span class="obs-link">[[상재균 배양 기법]]</span>
     </blockquote>
+  </div>
 
-    <!-- Concept A -->
-    <div class="concept-card" id="concept-a">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept A &nbsp;—&nbsp; "모낭 pH 항상성 회복 포스트바이오틱"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p><em>C. acnes</em>가 정상적으로 생산하는 <strong>Propionic Acid (프로피온산)</strong>는 모낭 내 pH를 4.5–5.0으로 유지해 과각화와 병원균 증식을 억제한다. 이상증 상태에서는 이 산성 환경이 무너진다. → <em>C. acnes</em> 건강한 phylotype 유래 포스트바이오틱 발효물로 <strong>'모낭 산성 환경 복원'</strong> 소구.</p>
-      <h4>원료 개발 방향</h4>
-      <ul>
-        <li>건강 피부 유래 <em>C. acnes</em> phylotype I-1 또는 III 배양 → 발효 여과물 또는 사균체 (Lysate) 제조</li>
-        <li>모낭 pH 조절 지표: 4.5–5.0 유지 효능 in vitro 검증</li>
-        <li>모낭 내 TEWL 감소, 과각화 억제 효능 측정</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>저점도 토너, 모공 케어 세럼, 클렌징 에센스 (pH 조정 포함)</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> '모낭 내부로부터의 케어' 포지셔닝 — 기존 외부 수렴제와 차별화</div>
-      <div class="risk-box">⚠️ <strong>리스크:</strong> <em>C. acnes</em> 성분 기반 원료의 소비자 거부감 (나쁜 균 이미지) → 커뮤니케이션 전략 필요 / 활성 농도 및 안전성 규명 필요</div>
+  <!-- Next-06 -->
+  <div class="concept-card" id="next06">
+    <div class="concept-title">
+      <span class="emoji">💡</span>
+      Next-06 &nbsp;—&nbsp; 멀티-축 마이크로바이옴 전략 — 장-피부-뇌 축 크로스오버 원료
     </div>
+    <div class="field-label">배경</div>
+    <p>피부 마이크로바이옴은 독립적으로 존재하지 않는다. <strong>장-피부 축(Gut-Skin Axis)</strong>, <strong>피부-뇌 축(Skin-Brain Axis)</strong>이 체계적으로 연결되어 있으며, 통합 전략이 차세대 마이크로바이옴 원료의 방향이다.</p>
+    <div class="field-label">3대 축 전략</div>
+    <pre><span class="hl-teal">[Inside-Out: 경구 → 장 → 피부]</span>
+구강 섭취 프로바이오틱/프리바이오틱
+  → 장 마이크로바이옴 조성 → 장 투과성 정상화
+  → 전신 염증 감소 → 피부 염증·피지·노화 개선
+  예시: Lactobacillus reuteri 경구 투여 → 피부 세라마이드↑ (2024)
 
-    <!-- Concept B -->
-    <div class="concept-card" id="concept-b">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept B &nbsp;—&nbsp; "<em>S. epidermidis</em> LPS-free Lysate + AhR 시너지 모공 탄력 세럼"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p><em>S. epidermidis</em>의 세포벽 성분(lipoteichoic acid, β-glucan)은 TLR2 경로를 통해 모공 주변 <strong>Tight Junction 단백질 발현을 촉진</strong>하며, AhR 신호 경로를 통해 피부 장벽·탄력 수복에 관여한다. AhR ligand와 복합 적용 시 모공 주변 진피의 구조적 회복이 시너지 가능.</p>
-      <h4>원료 개발 방향</h4>
-      <ul>
-        <li><em>S. epidermidis</em> ATCC 12228 또는 선발 균주 → LPS-free 열처리 사균체 (whole-cell lysate) 제조</li>
-        <li>AhR 작용 식물 유래 리간드(인돌-3-카비놀, 루테올린 등)와 복합 제형</li>
-        <li>Tight Junction 단백질(Claudin-1, Occludin) 발현량 평가</li>
-        <li>모공 직경 변화 3D 이미징 측정 (Visia, VisioFace)</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>앰플, 나이트 크림, 스피큘 딜리버리 복합 세럼</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> '피부 면역 훈련 + 모공 구조 수복'의 이중 소구 → 마이크로바이옴 × 장벽 × 모공 타이트닝 삼각 포지셔닝</div>
-      <blockquote style="margin-top:12px"><strong>연계 참고:</strong>
-        <span class="obs-link">[[skin_microbiome_report §3.1]]</span>
-        <span class="obs-link">[[Tight Junction 단백질]]</span>
-        <span class="obs-link">[[AhR 신호 경로]]</span>
-      </blockquote>
-    </div>
+<span class="hl-blue">[Outside-In: 피부 도포 → 국소 생태계 → 전신 신호]</span>
+특정 상재균 지원 포스트바이오틱 도포 → 모낭 마이크로바이옴 정상화
+  → 국소 면역 훈련 → 전신 알레르기 반응↓
+  예시: Roseomonas mucosa LBP → AD 피부 도포 → TH2 억제 임상 근거
 
-    <!-- Concept C -->
-    <div class="concept-card" id="concept-c">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept C &nbsp;—&nbsp; "선택적 <em>C. acnes</em> 파지 기반 여드름성 모공 케어 토포 세럼"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p>박테리오파지 치료는 현재 <em>C. acnes</em> 대상 Phase 임상이 진행 중이다. <em>C. acnes</em> phylotype RT4/RT5에 특이적인 <strong>파지 칵테일 포스트바이오틱</strong>을 이용해 병원성 <em>C. acnes</em>만 선택 억제, 유익한 <em>C. acnes</em>는 보존하는 '정밀 모공 케어' 컨셉.</p>
-      <h4>원료 개발 방향</h4>
-      <ul>
-        <li>RT4/RT5 특이적 리틱(lytic) 파지 선별 및 안전성 평가</li>
-        <li>파지 여과물 (filtrate) 또는 파지 유래 단백질 (endolysin) 기반 원료로 전환</li>
-        <li><em>C. acnes</em> phylotype 선별적 억제 확인 (in vitro 피지선 모델)</li>
-        <li>Pore 염증 마커(IL-1β, IL-8) 감소 효능 측정</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>여드름성 모공 특화 앰플, 스팟 트리트먼트, 클레이 마스크 함유</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> 항생제 대체 + 마이크로바이옴 보존 + 여드름성 모공 정밀 케어 → 피부과-like Dermocosmetic 포지셔닝</div>
-      <blockquote style="margin-top:12px"><strong>연계 참고:</strong>
-        <span class="obs-link">[[파지 치료 (Phage Therapy)]]</span>
-        <span class="obs-link">[[여드름 병인]]</span>
-        <span class="obs-link">[[Cutibacterium acnes]]</span>
-      </blockquote>
-    </div>
-
-    <!-- Concept D -->
-    <div class="concept-card" id="concept-d">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept D &nbsp;—&nbsp; "Galactomyces × Zinc PCA × PHA 피지 균형 마이크로바이옴 프리바이오틱 세럼"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p>Galactomyces ferment filtrate는 피지 균형·모공 축소 임상 근거가 풍부하며, Zinc PCA는 5α-환원효소 억제로 피지 생산을 조절한다. 여기에 <strong>마이크로바이옴 친화 프리바이오틱</strong>을 추가해 유익한 <em>C. acnes</em> phylotype과 <em>S. epidermidis</em>의 공생 환경을 조성하는 복합 원료 컨셉.</p>
-      <h4>원료 개발 방향</h4>
-      <ul>
-        <li>Galactomyces ferment (피지 균형) + Zinc PCA (피지 조절) + Inulin/FOS (프리바이오틱)</li>
-        <li>피지 분비량 변화, 마이크로바이옴 다양성 지수(α-diversity) 변화 측정</li>
-        <li>피부 메타게노믹스로 <em>C. acnes</em> phylotype 비율 변화 확인</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>데일리 세럼, 앰플, 수부지(건조+지성) 피부 전용 수분 에센스</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> 프리바이오틱 × 기존 모공 케어 성분 조합의 근거 기반 접근 → '케어 성분 + 마이크로바이옴 유지'의 단순 명확한 소구</div>
-    </div>
-
-    <!-- Concept E -->
-    <div class="concept-card" id="concept-e">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept E &nbsp;—&nbsp; "<em>S. hominis</em> 유래 Quorum Sensing 억제 펩타이드 — 모공 염증 예방 포스트바이오틱"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p><em>S. hominis</em>는 <strong>lugdunin</strong>과 같은 lantibiotics를 분비해 <em>S. aureus</em>의 쿼럼센싱(agr system)을 억제한다. <em>S. aureus</em>의 모낭 내 쿼럼센싱 활성화는 독소 분비 → 모낭 염증 → 모공 변형의 경로를 유발한다. → <em>S. hominis</em> 유래 항-쿼럼센싱 포스트바이오틱 원료로 <strong>모낭 내 염증 예방 및 모공 변형 보호</strong> 소구.</p>
-      <h4>원료 개발 방향</h4>
-      <ul>
-        <li><em>S. hominis</em> A9 균주 발효 → 쿼럼센싱 억제 물질(lugdunin 등) 함유 발효 여과물 제조</li>
-        <li><em>S. aureus</em> agr 활성 억제율 측정 (in vitro quorum sensing assay)</li>
-        <li>모낭 염증 억제 효능 (IL-1β, IL-6 감소) 확인</li>
-        <li>아토피성 피부에서의 모공 케어 적용 가능성 탐색</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>민감성·아토피성 모공 케어 세럼, 진정 앰플, 나이트크림</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> 최초 항-쿼럼센싱 기전의 모공 케어 소구 → '모공을 염증으로부터 지키는' 예방적 마이크로바이옴 케어</div>
-      <blockquote style="margin-top:12px"><strong>연계 참고:</strong>
-        <span class="obs-link">[[skin_microbiome_report §3.3]]</span>
-        <span class="obs-link">[[쿼럼센싱]]</span>
-        <span class="obs-link">[[MRSA 방어 전략]]</span>
-      </blockquote>
-    </div>
-
-    <!-- Concept F -->
-    <div class="concept-card" id="concept-f">
-      <div class="concept-title">
-        <span class="emoji">💡</span>
-        Concept F &nbsp;—&nbsp; "모낭 마이크로바이옴 프로파일링 기반 AI 맞춤 모공 케어 솔루션"
-      </div>
-      <h4>핵심 아이디어</h4>
-      <p>피부 스왑 + NGS(차세대 염기서열 분석)으로 <strong>개인별 모낭 마이크로바이옴 프로파일</strong>을 파악하고, AI가 최적 성분 조합을 추천하는 '정밀 모공 케어' 서비스 모델.</p>
-      <h4>원료/서비스 개발 방향</h4>
-      <ul>
-        <li>피지 부위 피부 스왑 기반 16S rRNA 또는 메타게노믹스 분석 플랫폼</li>
-        <li>AI 모델: 마이크로바이옴 프로파일 → 모공 타입 분류 → 맞춤 성분 매칭</li>
-        <li>① 피지 과다형(C. acnes RT4↑) → BHA + Zinc PCA</li>
-        <li>② 탄력 저하형(Malassezia↑) → 포스트바이오틱 + 레티놀</li>
-        <li>③ 민감성 염증형(S. aureus↑) → 파지 포스트바이오틱 + Niacinamide</li>
-      </ul>
-      <h4>제형 아이디어</h4>
-      <p>맞춤 세럼 구독 서비스 (DTC), 전문 피부과·에스테틱 채널</p>
-      <div class="diff-box">✅ <strong>차별점:</strong> 마이크로바이옴 데이터 기반 초개인화 → B2C 플랫폼 비즈니스와 원료 개발의 연계</div>
-      <blockquote style="margin-top:12px"><strong>연계 참고:</strong>
-        <span class="obs-link">[[AI 기반 피부 진단]]</span>
-        <span class="obs-link">[[개인화 스킨케어]]</span>
-        <span class="obs-link">[[메타게노믹스 방법론]]</span>
-      </blockquote>
-    </div>
-
-    <!-- Matrix -->
-    <h3 id="matrix">Ideation 매트릭스 요약</h3>
-    <div class="matrix-grid">
-      <div class="header-cell">접근법 \ 효과</div>
-      <div class="header-cell">모공 타이트닝</div>
-      <div class="header-cell">모공 클렌징</div>
-      <div class="header-cell">피지 조절</div>
-      <div class="header-cell">예방/보호</div>
-
-      <div class="row-label">Postbiotic</div>
-      <div class="cell filled">Concept B</div>
-      <div class="cell filled">Concept A</div>
-      <div class="cell filled">Concept D</div>
-      <div class="cell filled">Concept E</div>
-
-      <div class="row-label">Phage 유래</div>
-      <div class="cell">—</div>
-      <div class="cell filled">Concept C</div>
-      <div class="cell filled">Concept C</div>
-      <div class="cell filled">Concept C</div>
-
-      <div class="row-label">Prebiotic</div>
-      <div class="cell">—</div>
-      <div class="cell">—</div>
-      <div class="cell filled">Concept D</div>
-      <div class="cell">—</div>
-
-      <div class="row-label">AI 맞춤</div>
-      <div class="cell filled">Concept F</div>
-      <div class="cell filled">Concept F</div>
-      <div class="cell filled">Concept F</div>
-      <div class="cell filled">Concept F</div>
-
-      <div class="row-label">AhR 시너지</div>
-      <div class="cell filled">Concept B</div>
-      <div class="cell">—</div>
-      <div class="cell">—</div>
-      <div class="cell">—</div>
-    </div>
-
-    <hr>
-
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="sec6">6. 우선순위 개발 방향 제언</h2>
-
-    <h3>단기 (0–2년): 빠른 시장 진입 가능 컨셉</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>우선순위</th><th>컨셉</th><th>근거</th></tr></thead>
-        <tbody>
-          <tr><td><span class="star">★★★</span></td><td><strong>Concept D</strong> — Galactomyces × Zinc PCA × 프리바이오틱</td><td>기존 성분 조합; 임상 근거 풍부; 빠른 개발 가능</td></tr>
-          <tr><td><span class="star">★★★</span></td><td><strong>Concept B</strong> — S. epidermidis 라이세이트 + AhR 시너지</td><td>포스트바이오틱 원료 상업적 존재; AhR 소구 차별성</td></tr>
-          <tr><td><span class="star">★★☆</span></td><td><strong>Concept A</strong> — C. acnes 유래 포스트바이오틱 pH 복원</td><td>소비자 인식 교육 필요하나 기술 혁신성 높음</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>중장기 (2–5년): 기술 선도 컨셉</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>우선순위</th><th>컨셉</th><th>근거</th></tr></thead>
-        <tbody>
-          <tr><td><span class="star">★★★</span></td><td><strong>Concept C</strong> — 선택적 파지 기반 여드름성 모공 케어</td><td>피부과-like; 임상 파이프라인 구축 필요; 규제 선점 중요</td></tr>
-          <tr><td><span class="star">★★☆</span></td><td><strong>Concept E</strong> — Quorum sensing 억제 포스트바이오틱</td><td>독창성 최고; 작용 기전 규명 및 임상 근거 구축 기간 필요</td></tr>
-          <tr><td><span class="star">★★☆</span></td><td><strong>Concept F</strong> — AI 맞춤 모공 케어 플랫폼</td><td>기술 복잡도 높으나 시장 성장성 최대; DTC 플랫폼 연계</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>핵심 기술 역량 요구 사항</h3>
-    <ul class="cap-list">
-      <li><strong>발효공학:</strong> 특정 균주 배양 → 안전한 발효 원료 생산 (GMP 기준)</li>
-      <li><strong>피부 메타게노믹스:</strong> 모낭 내 마이크로바이옴 분석 플랫폼</li>
-      <li><strong>피부 모델 평가:</strong> 모낭 단위 3D 오가노이드 또는 EpiDermFT 모델</li>
-      <li><strong>분자생물학:</strong> 쿼럼센싱 억제, TLR 신호, AhR 경로 평가계</li>
-      <li><strong>임상 평가:</strong> 모공 직경 측정 (Visia, DermaCatch), 피지 정량 (Sebumeter)</li>
+<span class="hl-amber">[Skin-Brain Axis: 피부 마이크로바이옴 → 신경계 → 웰빙]</span>
+2025 신규 연구: 안면·두피 마이크로바이옴 조성 → 심리적 웰빙과 상관
+  → '스트레스 피부' 케어의 새로운 과학적 근거
+  예시: 마이크로바이옴 균형 → Substance P 조절 → 피부 스트레스 반응↓</pre>
+    <div class="field-label">원료 개발 방향</div>
+    <ul>
+      <li><strong>Oral-Topical 시너지 패키지:</strong> 경구 프로바이오틱 + 토포 포스트바이오틱 세트 개발 → 인사이드-아웃 효과 시너지 임상 설계</li>
+      <li><strong>스트레스 피부 타깃 마이크로바이옴 원료:</strong> 신경-피부-마이크로바이옴 상호작용 성분 스크리닝</li>
+      <li><strong>시간대별 마이크로바이옴 리듬 소재:</strong> 피부 마이크로바이옴의 일주기 리듬 연계 → AM/PM 맞춤 원료 컨셉</li>
     </ul>
+    <div class="diff-box">✅ <strong>차별점:</strong> 피부 마이크로바이옴을 피부 단독이 아닌 <strong>전신 건강·심리 웰빙과 연결</strong>하는 확장된 소구 / Oral-Topical 패키지 비즈니스 모델 / 코스메슈티컬 → 웰니스 브랜드 피벗 가능</div>
+    <blockquote style="margin-top:14px"><strong>연계 참고:</strong>
+      <span class="obs-link">[[장-피부 축 (Gut-Skin Axis)]]</span>
+      <span class="obs-link">[[피부-뇌 축 (Skin-Brain Axis)]]</span>
+      <span class="obs-link">[[심리적 스트레스와 피부]]</span>
+      <span class="obs-link">[[skin_microbiome_report §5.5]]</span>
+    </blockquote>
+  </div>
 
-    <hr>
+  <!-- Matrix -->
+  <h3 id="matrix">Ideation 전략 매트릭스</h3>
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>컨셉</th>
+          <th>단기 실현성</th>
+          <th>기술 독창성</th>
+          <th>시장 임팩트</th>
+          <th>규제 난이도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">Next-01 (OMV)</td><td>★★☆</td><td class="filled">★★★★☆</td><td class="filled">★★★★☆</td><td>높음</td></tr>
+        <tr><td class="row-label">Next-02 (정밀발효)</td><td class="filled">★★★☆</td><td class="filled">★★★★☆</td><td class="filled">★★★★★</td><td>보통</td></tr>
+        <tr><td class="row-label">Next-03 (신규 균주)</td><td class="filled">★★★☆</td><td>★★★☆</td><td class="filled">★★★★☆</td><td>낮음~보통</td></tr>
+        <tr><td class="row-label">Next-04 (엔지니어드 PB)</td><td>★★☆</td><td class="filled">★★★★★</td><td class="filled">★★★★☆</td><td>높음</td></tr>
+        <tr><td class="row-label">Next-05 (제형 재설계)</td><td class="filled">★★★★</td><td>★★★☆</td><td class="filled">★★★★☆</td><td>낮음</td></tr>
+        <tr><td class="row-label">Next-06 (멀티축 전략)</td><td class="filled">★★★☆</td><td class="filled">★★★★☆</td><td class="filled">★★★★★</td><td>보통</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="graph">연결 노드 (Obsidian Graph 설계)</h2>
-    <div class="graph-box">
-<span class="hub">[모공 케어 원료 개발 Ideation]</span>  ← 허브 노드
-    │
-    ├── [마이크로바이옴 접목]
-    │     ├── <span class="node">[[skin_microbiome_report]]</span>          <span class="comment">← 피부 마이크로바이옴 리포트 (상위 허브)</span>
-    │     ├── <span class="node">[[Cutibacterium acnes]]</span>             <span class="comment">← 핵심 모낭 상재균</span>
-    │     ├── <span class="node">[[Staphylococcus epidermidis]]</span>      <span class="comment">← 모공 보호 상재균</span>
-    │     ├── <span class="node">[[파지 치료 (Phage Therapy)]]</span>       <span class="comment">← Concept C 기반 기술</span>
-    │     ├── <span class="node">[[마이크로바이옴 치료전략]]</span>          <span class="comment">← 전략 프레임워크</span>
-    │     ├── <span class="node">[[포스트바이오틱스]]</span>                <span class="comment">← 주요 원료 카테고리</span>
-    │     ├── <span class="node">[[단쇄지방산 (SCFA)]]</span>               <span class="comment">← 모낭 pH 조절</span>
-    │     ├── <span class="node">[[쿼럼센싱]]</span>                        <span class="comment">← Concept E 기반 기전</span>
-    │     └── <span class="node">[[항균 펩타이드 (AMPs)]]</span>            <span class="comment">← 모공 보호 메커니즘</span>
-    │
-    ├── [모공 기전]
-    │     ├── <span class="node">[[피지선 생물학]]</span>                   <span class="comment">← 모공 확대 1차 원인</span>
-    │     ├── <span class="node">[[피부 pH와 마이크로바이옴]]</span>         <span class="comment">← 모낭 pH와 균형</span>
-    │     ├── <span class="node">[[여드름 병인]]</span>                     <span class="comment">← 여드름성 모공 확대</span>
-    │     ├── <span class="node">[[피부 장벽 기능]]</span>                  <span class="comment">← 모공 주변 TJ 단백질</span>
-    │     ├── <span class="node">[[AhR 신호 경로]]</span>                   <span class="comment">← Concept B 핵심 기전</span>
-    │     └── <span class="node">[[Tight Junction 단백질]]</span>           <span class="comment">← 모공 탄력 구조</span>
-    │
-    ├── [성분/기술]
-    │     ├── <span class="node">[[피부 오가노이드]]</span>                 <span class="comment">← 모공 케어 평가 플랫폼</span>
-    │     ├── <span class="node">[[멀티-오믹스 분석 파이프라인]]</span>      <span class="comment">← 개인 맞춤 진단</span>
-    │     ├── <span class="node">[[Live Biotherapeutics (LBP)]]</span>     <span class="comment">← 미래 모공 케어 치료제</span>
-    │     └── <span class="node">[[피지 대사]]</span>                      <span class="comment">← 피지 성분과 모공 관계</span>
-    │
-    ├── [질환 연계]
-    │     ├── <span class="node">[[여드름 병인]]</span>
-    │     ├── <span class="node">[[아토피 피부염]]</span>
-    │     └── <span class="node">[[Malassezia와 지루성 피부염]]</span>
-    │
-    └── [시장·응용]
-          ├── <span class="node">[[개인화 스킨케어]]</span>
-          ├── <span class="node">[[AI 기반 피부 진단]]</span>
-          ├── <span class="node">[[메타게노믹스 방법론]]</span>
-          └── <span class="node">[[정밀 피부의학 (Precision Dermatology)]]</span>
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="sec7">7. 우선순위 및 개발 로드맵</h2>
+
+  <div class="phase-row">
+    <div class="phase-block">
+      <div class="phase-label">Phase 1 · 0–18개월</div>
+      <p><strong>Next-03</strong> 신규 균주 소재화<br><em>Akkermansia</em> 포스트바이오틱 3종 시제품 → MTT assay, UV 방어 지수</p>
+      <p><strong>Next-05</strong> 제형 재설계<br>Sophorolipid 코스메틱 그레이드 확보 → 마이크로바이옴 임팩트 스코어 측정</p>
+      <p><strong>Next-02</strong> 정밀발효 파트너십<br>Galactomyces 정밀발효 버전 파트너 탐색 → 배치 재현성 CV &lt;5%</p>
     </div>
+    <div class="phase-block">
+      <div class="phase-label">Phase 2 · 18개월–3년</div>
+      <p><strong>Next-01</strong> OMV 원료<br><em>S. epidermidis</em> OMV 정제 공정 확립 → LPS-free 처리 + TLR2 활성 확인</p>
+      <p><strong>Next-04</strong> 엔지니어드 PB<br>Nisin + C. acnes 특이적 엔도라이신 복합 원료 → S. aureus MIC ≤1μg/mL</p>
+      <p><strong>Next-06</strong> 멀티축 전략<br>Oral-Topical 시너지 임상 파일럿 → α-diversity 변화 측정</p>
+    </div>
+    <div class="phase-block">
+      <div class="phase-label">Phase 3 · 3년+</div>
+      <p><strong>통합 플랫폼</strong><br>AI + 메타게노믹스 기반 개인 피부 생태계 프로파일링 → AI 분류 정확도 ≥80%</p>
+      <p><strong>IP 포트폴리오</strong><br>OMV 공정 특허 + 엔지니어드 포스트바이오틱 조합 특허 + 균주 특허 출원 3건 이상</p>
+    </div>
+  </div>
 
-    <hr>
+  <h3>핵심 기술 역량 확보 순위</h3>
+  <div class="cap-group">
+    <div class="cap-group-title">즉시 필요</div>
+    <ul class="cap-list">
+      <li>미생물 발효 공정 GMP 기준 확립</li>
+      <li>포스트바이오틱 성분 분석 (LC-MS, GC-MS)</li>
+      <li>피부 마이크로바이옴 측정 플랫폼 (16S, 메타게노믹스)</li>
+    </ul>
+  </div>
+  <div class="cap-group">
+    <div class="cap-group-title">중기 필요</div>
+    <ul class="cap-list">
+      <li>합성생물학/정밀발효 외부 파트너십</li>
+      <li>OMV/EV 정제·규격화 기술</li>
+      <li>마이크로바이옴 영향 평가 in vitro 모델</li>
+    </ul>
+  </div>
+  <div class="cap-group">
+    <div class="cap-group-title">장기 필요</div>
+    <ul class="cap-list">
+      <li>AI 피부 마이크로바이옴 프로파일링 시스템</li>
+      <li>임상 마이크로바이옴 바이오마커 데이터셋</li>
+      <li>글로벌 규제 대응 (EU, FDA, MFDS 마이크로바이옴 화장품 가이드라인)</li>
+    </ul>
+  </div>
 
-    <!-- ─────────────────────────────────────── -->
-    <h2 id="refs">참고문헌</h2>
-    <ol class="ref-list">
-      <li>Byrd AL et al. (2025). <strong>The human skin microbiome: from metagenomes to therapeutics.</strong> <em>Nature Reviews Microbiology.</em></li>
-      <li>Feidenhansl R et al. (2024). <strong>Cutibacterium and Staphylococcus dysbiosis of the skin microbiome in acne and its decline after isotretinoin treatment.</strong> <em>JEADV Clinical Practice.</em></li>
-      <li>PMC (2025). <strong>The Role of the Skin Microbiome in Acne: Challenges and Future Therapeutic Opportunities.</strong> <em>Int. J. Mol. Sci.</em></li>
-      <li>Kim M et al. (2025). <strong>Skin Microbiome in Health and Disease: Mechanisms and Emerging Therapeutic Strategies.</strong> <em>PMC / NIH.</em></li>
-      <li>Kober MM et al. (2025). <strong>The Skin Microbiome Revolution: Prebiotics, Probiotics, and Postbiotics in Skincare.</strong> <em>Cosmetics.</em></li>
-      <li>Drouet H et al. (2025). <strong>Microbiome-Based Interventions for Skin Aging and Barrier Function.</strong> <em>Annals of Dermatology.</em></li>
-      <li>MagazineKave (2026). <strong>2026 K-Beauty In-Depth Report: Paradigm Shift of Delivery Technology — Spicules and Exosomes.</strong></li>
-      <li>ActiveBioWorks (2025). <strong>Postbiotics, Lysates, Microbiome: Strategies for Barrier-Repair Products.</strong></li>
-      <li>Northbiomedical (2025). <strong>How to Shrink Pores: What Actually Works According to Dermatology Research.</strong></li>
-      <li>OEM Cosmetic (2025). <strong>Best for Minimizing Pores: What OEM Developers Should Know About Pore-Care Formulations.</strong></li>
-      <li>Wonnda (2026). <strong>Top 10 Skincare Trends Of 2026.</strong></li>
-      <li>CosinKorea. <strong>[화장품 빅데이터 분석 (37)] 모공케어 화장품 트렌드 분석.</strong></li>
-      <li>Hwahae Business (2026). <strong>2026년 놓치면 안될 뷰티 트렌드 총정리.</strong></li>
-    </ol>
+  <hr>
 
-    <footer>
-      작성: Claude Code  &nbsp;|&nbsp; 원료 개발 이데이션 관점 &nbsp;|&nbsp; 기준일: 2026-06-01 &nbsp;|&nbsp; HW K
-    </footer>
+  <!-- ─────────────────────── -->
+  <h2 id="graph">연결 노드 (Obsidian Graph 설계)</h2>
+  <div class="graph-box">
+<span class="hub">[마이크로바이옴 원료 개발 Ideation]</span>  ← 허브 노드
+    │
+    ├── <span class="cat">[상위 허브 연결]</span>
+    │     ├── <span class="node">[[skin_microbiome_report]]</span>           <span class="arrow">← 피부 마이크로바이옴 전체 리포트 (최상위 허브)</span>
+    │     └── <span class="node">[[pore_care_ideation_report]]</span>        <span class="arrow">← 모공 케어 이데이션 (교차 연결)</span>
+    │
+    ├── <span class="cat">[핵심 균주·원료]</span>
+    │     ├── <span class="node">[[Staphylococcus epidermidis]]</span>       <span class="arrow">← Next-01, Next-03 핵심 균주</span>
+    │     ├── <span class="node">[[Cutibacterium acnes]]</span>              <span class="arrow">← Next-03, Next-04 타깃 균주</span>
+    │     ├── <span class="node">[[Corynebacterium spp.]]</span>             <span class="arrow">← Next-03 신규 균주 후보</span>
+    │     ├── <span class="node">[[Malassezia와 지루성 피부염]]</span>        <span class="arrow">← 진균 마이크로바이옴</span>
+    │     └── <span class="node">[[암모니아 산화 고세균]]</span>              <span class="arrow">← Next-03 고세균 후보</span>
+    │
+    ├── <span class="cat">[기전·신호 경로]</span>
+    │     ├── <span class="node">[[포스트바이오틱스]]</span>                 <span class="arrow">← Next-01~04 핵심 원료 카테고리</span>
+    │     ├── <span class="node">[[단쇄지방산 (SCFA)]]</span>               <span class="arrow">← 포스트바이오틱 핵심 성분</span>
+    │     ├── <span class="node">[[항균 펩타이드 (AMPs)]]</span>             <span class="arrow">← 박테리오신 연계</span>
+    │     ├── <span class="node">[[AhR 신호 경로]]</span>                   <span class="arrow">← 마이크로바이옴-피부 신호축</span>
+    │     ├── <span class="node">[[쿼럼센싱]]</span>                         <span class="arrow">← Next-04 타깃 기전</span>
+    │     ├── <span class="node">[[Tight Junction 단백질]]</span>            <span class="arrow">← OMV 효능 지표</span>
+    │     └── <span class="node">[[피부 면역]]</span>                        <span class="arrow">← 면역 훈련 기전</span>
+    │
+    ├── <span class="cat">[기술 플랫폼]</span>
+    │     ├── <span class="node">[[메타게노믹스 방법론]]</span>              <span class="arrow">← 마이크로바이옴 분석 기반</span>
+    │     ├── <span class="node">[[멀티-오믹스 분석 파이프라인]]</span>      <span class="arrow">← 통합 분석</span>
+    │     ├── <span class="node">[[피부 오가노이드]]</span>                  <span class="arrow">← OMV·신균주 평가 모델</span>
+    │     ├── <span class="node">[[상재균 배양 기법]]</span>                 <span class="arrow">← 2024 배양 돌파구</span>
+    │     └── <span class="node">[[Live Biotherapeutics (LBP)]]</span>      <span class="arrow">← 프로바이오틱 → LBP 경계</span>
+    │
+    ├── <span class="cat">[축(Axis) 연계]</span>
+    │     ├── <span class="node">[[장-피부 축 (Gut-Skin Axis)]]</span>       <span class="arrow">← Next-06 핵심</span>
+    │     ├── <span class="node">[[피부-뇌 축 (Skin-Brain Axis)]]</span>     <span class="arrow">← Next-06 확장</span>
+    │     └── <span class="node">[[심리적 스트레스와 피부]]</span>           <span class="arrow">← Next-06 응용</span>
+    │
+    ├── <span class="cat">[치료·응용 연계]</span>
+    │     ├── <span class="node">[[마이크로바이옴 치료전략]]</span>
+    │     ├── <span class="node">[[파지 치료 (Phage Therapy)]]</span>
+    │     ├── <span class="node">[[아토피 피부염]]</span>
+    │     └── <span class="node">[[여드름 병인]]</span>
+    │
+    └── <span class="cat">[시장·노화 연계]</span>
+          ├── <span class="node">[[피부 노화와 마이크로바이옴]]</span>
+          ├── <span class="node">[[생물학적 나이 마커]]</span>
+          ├── <span class="node">[[개인화 스킨케어]]</span>
+          └── <span class="node">[[정밀 피부의학 (Precision Dermatology)]]</span>
+  </div>
 
-  </main>
+  <hr>
+
+  <!-- ─────────────────────── -->
+  <h2 id="refs">참고문헌</h2>
+  <ol class="ref-list">
+    <li>Kober MM et al. (2025). <strong>The Skin Microbiome Revolution: The Science and Challenges of Prebiotics, Probiotics, and Postbiotics in Skincare.</strong> <em>Cosmetics</em> 13(1), 43.</li>
+    <li>Kim M et al. (2025). <strong>Skin Microbiome in Health and Disease: Mechanisms and Emerging Therapeutic Strategies.</strong> <em>PMC/NIH.</em></li>
+    <li>Rajan S et al. (2025). <strong>Human Skin Microbiota‐Derived Extracellular Vesicles and Their Cosmeceutical Possibilities — A Mini Review.</strong> <em>Experimental Dermatology.</em></li>
+    <li>Cosmetics MDPI (2025). <strong>The Transformative Impact of Extracellular Vesicles on the Cosmetics Industry.</strong> <em>Cosmetics</em> 12(5), 191.</li>
+    <li>ScienceDirect (2025). <strong>The efficacy of Akkermansia muciniphila YGMCC2602-derived postbiotics in skin repair.</strong> <em>Journal of Functional Foods.</em></li>
+    <li>MDPI Applied Sciences (2025). <strong>Precision Fermentation as a Tool for Sustainable Cosmetic Ingredient Production.</strong></li>
+    <li>SCIEPublish (2025). <strong>Synthetic Biology–Driven Innovation in the Production of Cosmetic Ingredients.</strong></li>
+    <li>Personal Care Insights (2025). <strong>IFSCC 2025: BASF reveals advancements — holistic approach to microbiome-friendly skin care.</strong></li>
+    <li>Personal Care Insights (2025). <strong>IFSCC 2025: dsm-firmenich — Facial Mapping microbiome platform.</strong></li>
+    <li>Cosmetics Design Europe (2025). <strong>X key Takeaways from IFSCC 2025.</strong></li>
+    <li>Cosmetics &amp; Toiletries (2025). <strong>L'Oréal Files Patent on Crystallized Live Probiotic Anti-aging Skin Care Formula.</strong></li>
+    <li>London Dermatology Centre (2026). <strong>Skin Microbiome Therapies in 2026 (Evidence).</strong></li>
+    <li>USPTO (2023). <strong>Cosmetic use of engineered postbiotics comprising bacteriocins and/or endolysins.</strong> US11633348, US12214070.</li>
+    <li>Grand View Research (2025). <strong>Microbiome Skincare Products Market Report 2030.</strong> CAGR 12.2%.</li>
+    <li>GlobeNewswire (2026). <strong>$835+ Mn Microbiome Skincare Products Market Forecast to 2030.</strong></li>
+    <li>InsightAce Analytic (2025). <strong>Global Microbiome Cosmetics Market Size, Share and Forecast 2026–2035.</strong></li>
+    <li>The K Beauty Science (2025). <strong>마이크로바이옴, 소재 넘어 '피부 생태계 설계 플랫폼 기술'로 진화.</strong> IFSCC 2025 리뷰.</li>
+  </ol>
+
+  <footer>
+    작성: Claude Code (claude-sonnet-4-6) &nbsp;|&nbsp; 원료 개발 이데이션 관점 &nbsp;|&nbsp; 기준일: 2026-06-08 &nbsp;|&nbsp; BTI R&amp;I MB1팀
+  </footer>
+
+</main>
 </div>
-
 </body>
 </html>
